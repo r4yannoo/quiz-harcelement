@@ -3,226 +3,1035 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Protection Harcèlement - Fonction Publique</title>
+    <title>Quiz : Protection des agents victimes de harcèlement</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background:  linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
             padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
         }
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius:  15px;
-            box-shadow:  0 10px 40px rgba(0,0,0,0.2);
-        }
-        h1 { text-align: center; color: #667eea; margin-bottom: 10px; }
-        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
-        .nav-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content:  center;
-            margin-bottom:  30px;
-        }
-        .nav-btn {
-            padding: 15px 25px;
-            border: 2px solid #667eea;
-            background: white;
-            color: #667eea;
+            background: #fff;
+            padding: 20px;
             border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .nav-btn:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
+        h1 {
+            text-align: center;
+            color: #2c3e50;
         }
-        .nav-btn.active {
-            background: #667eea;
-            color: white;
-        }
-        .theme { display: none; }
-        . theme. active { display: block; }
-        .theme-title {
-            color: #667eea;
-            font-size: 1.8em;
-            margin-bottom: 30px;
-            text-align:  center;
-        }
-        . progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            width: 0%;
-            transition:  width 0.3s;
+        h2 {
+            color: #3498db;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            margin-top: 30px;
         }
         .question {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius:  10px;
-            border-left:  5px solid #667eea;
-        }
-        .question-number {
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom:  10px;
-        }
-        .question-text {
-            font-size: 1.2em;
-            color: #333;
             margin-bottom: 20px;
-            font-weight: 600;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
         }
         .options {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            margin-left: 20px;
         }
-        .option {
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-        }
-        .option:hover {
-            border-color: #667eea;
-            background: #f0f0ff;
-        }
-        .option input[type="radio"] {
-            margin-right: 15px;
-            cursor: pointer;
-        }
-        .option. correct {
-            border-color:  #4CAF50;
-            background: #E8F5E9;
-        }
-        .option.incorrect {
-            border-color: #F44336;
-            background: #FFEBEE;
-        }
-        .feedback {
-            margin-top: 15px;
-            padding: 15px;
-            border-radius:  8px;
-            display:  none;
-        }
-        . feedback.show {
+        .options label {
             display: block;
-        }
-        . feedback. correct {
-            background: #E8F5E9;
-            color: #2E7D32;
-            border-left: 4px solid #4CAF50;
-        }
-        .feedback.incorrect {
-            background: #FFEBEE;
-            color: #C62828;
-            border-left: 4px solid #F44336;
-        }
-        .score {
-            text-align: center;
-            font-size: 24px;
-            font-weight:  bold;
-            color: #667eea;
-            padding: 20px;
-            background: #f0f0ff;
-            border-radius: 10px;
-            margin:  30px 0;
+            margin-bottom: 8px;
+            cursor: pointer;
         }
         button {
-            padding: 12px 30px;
+            background: #3498db;
+            color: #fff;
             border: none;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 8px;
+            padding: 8px 12px;
+            border-radius: 4px;
             cursor: pointer;
-            font-weight: 600;
-            transition:  all 0.3s;
-            font-size: 1em;
+            font-size: 14px;
+            margin-top: 5px;
         }
-        button: hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        button:hover {
+            background: #2980b9;
         }
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
         }
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 30px;
-            justify-content: center;
-            flex-wrap: wrap;
+        .correct {
+            background: #d4edda;
+            color: #155724;
         }
+        .incorrect {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .score {
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .theme {
+            display: none;
+        }
+        .theme.active {
+            display: block;
+        }
+        .navigation {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .navigation button {
+            margin: 0 10px;
+            padding: 10px 20px;
+        }
+        /* Styles pour le certificat */
         .certificate {
             display: none;
-            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-            padding: 40px;
-            border-radius:  15px;
-            border: 3px solid #667eea;
             text-align: center;
-            margin-bottom: 30px;
+            background: #fff;
+            padding: 30px;
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-        .certificate. show { display: block; }
-        . certificate-title { font-size: 2.5em; color: #667eea; margin-bottom: 20px; font-weight: bold; }
-        .certificate-content { font-size: 1.2em; color: #333; margin-bottom: 20px; }
-        .score-circle {
-            width: 180px;
-            height: 180px;
-            border-radius:  50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 30px;
-            font-size:  3em;
-            font-weight:  bold;
+        .certificate.active {
+            display: block;
         }
-        @media (max-width: 768px) {
-            .container { padding: 20px; }
-            h1 { font-size: 1.5em; }\n            .nav-buttons { gap: 10px; }\n            .nav-btn { padding: 12px 20px; font-size: 0.9em; }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>🎓 Quiz Protection Harcèlement</h1>\n        <p class=\"subtitle\">Fonction Publique Territoriale</p>\n\n        <!-- Navigation -->\n        <div class=\"nav-buttons\">\n            <button class=\"nav-btn active\" onclick=\"switchTheme('theme1', this)\">1. Cadre légal</button>\n            <button class=\"nav-btn\" onclick=\"switchTheme('theme2', this)\">2. Signalement</button>\n            <button class=\"nav-btn\" onclick=\"switchTheme('theme3', this)\">3. Enquête</button>\n            <button class=\"nav-btn\" onclick=\"switchTheme('theme4', this)\">4. Protection</button>\n            <button class=\"nav-btn\" onclick=\"switchTheme('theme5', this)\">5. Recours</button>\n        </div>\n\n        <!-- THÈME 1 -->\n        <div id=\"theme1\" class=\"theme active\">\n            <h2 class=\"theme-title\">1. Cadre légal protecteur</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions1\"></div>\n            <div class=\"score\">Score :  <span id=\"score1\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme1')\">← Précédent</button>\n                <button id=\"nextBtn1\" onclick=\"nextQuestion('theme1')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- THÈME 2 -->\n        <div id=\"theme2\" class=\"theme\">\n            <h2 class=\"theme-title\">2. Dispositifs de signalement</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions2\"></div>\n            <div class=\"score\">Score : <span id=\"score2\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme2')\">← Précédent</button>\n                <button id=\"nextBtn2\" onclick=\"nextQuestion('theme2')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- THÈME 3 -->\n        <div id=\"theme3\" class=\"theme\">\n            <h2 class=\"theme-title\">3. Enquête administrative</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions3\"></div>\n            <div class=\"score\">Score : <span id=\"score3\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme3')\">← Précédent</button>\n                <button id=\"nextBtn3\" onclick=\"nextQuestion('theme3')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- THÈME 4 -->\n        <div id=\"theme4\" class=\"theme\">\n            <h2 class=\"theme-title\">4. Protection fonctionnelle</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions4\"></div>\n            <div class=\"score\">Score : <span id=\"score4\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme4')\">← Précédent</button>\n                <button id=\"nextBtn4\" onclick=\"nextQuestion('theme4')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- THÈME 5 -->\n        <div id=\"theme5\" class=\"theme\">\n            <h2 class=\"theme-title\">5. Sanctions et recours</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions5\"></div>\n            <div class=\"score\">Score : <span id=\"score5\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme5')\">← Précédent</button>\n                <button id=\"nextBtn5\" onclick=\"nextQuestion('theme5')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- Certificat -->\n        <div id=\"certificate\" class=\"certificate\">\n            <div class=\"certificate-title\">🏆 Certificat de Réussite</div>\n            <div class=\"certificate-content\" id=\"certContent\"></div>\n        </div>\n    </div>\n\n    <script>\n        const themes = {\n            'theme1': [\n                {\n                    q: 'Quelle loi a imposé la désignation obligatoire d\\'un référent harcèlement? ',\n                    opts: ['Loi du 6 août 2019', 'Loi du 13 juillet 1983', 'Décret du 6 novembre 2024', 'Charte DGAFP'],\n                    ans: 0,\n                    exp: 'La loi du 6 août 2019 de transformation de la fonction publique a rendu obligatoire cette désignation. '\n                },\n                {\n                    q: 'Quel article impose aux employeurs de garantir la santé mentale des agents?',\n                    opts: ['L.  134-1', 'L. 135', 'L. 136-1', 'L. 133-3'],\n                    ans: 2,\n                    exp: 'L\\'article L. 136-1 du Code général de la fonction publique. '\n                },\n                {\n                    q: 'La loi 2019 impose quelle obligation supplémentaire? ',\n                    opts: ['Psychologue obligatoire', 'Obligation de sécurité étendue à la santé mentale', 'Formation annuelle', 'Méditation obligatoire'],\n                    ans: 1,\n                    exp: 'Une obligation générale de sécurité incluant la protection de la santé mentale.'\n                },\n                {\n                    q: 'Quel texte a renforcé les obligations en prévention?',\n                    opts:  ['Décret 2024', 'Charte DGAFP 2019', 'Loi 6 août 2019', 'Accord 2018'],\n                    ans: 2,\n                    exp: 'La loi du 6 août 2019 a marqué un tournant majeur. '\n                },\n                {\n                    q: 'Quelle instance a publié la Charte en novembre 2019?',\n                    opts:  ['Défenseur des droits', 'DGAFP', 'Conseil d\\'État', 'CST'],\n                    ans: 1,\n                    exp:  'La Direction générale de l\\'administration et de la fonction publique (DGAFP).'\n                },\n                {\n                    q: 'Quel accord de 2018 a inspiré la Charte?',\n                    opts: ['Accord égalité professionnelle 30 nov 2018', 'Loi Sapin II', 'Décret 2020', 'Convention collective'],\n                    ans:  0,\n                    exp: 'L\\'accord relatif à l\\'égalité professionnelle du 30 novembre 2018.'\n                },\n                {\n                    q: 'Quel décret est entré en vigueur le 1er février 2025?',\n                    opts:  ['Décret 13 mars 2020', 'Décret 6 novembre 2024', 'Décret 28 mai 1982', 'Décret 4 novembre 1992'],\n                    ans: 1,\n                    exp:  'Le décret du 6 novembre 2024 a modernisé le système. '\n                },\n                {\n                    q: 'Quel principe est au cœur de la lutte? ',\n                    opts: ['Précaution', 'Prévention', 'Confidentialité', 'Proportionnalité'],\n                    ans: 1,\n                    exp: 'Le principe de prévention impose des mesures actives.'\n                },\n                {\n                    q: 'Quel texte interdit explicitement le harcèlement?',\n                    opts: ['Loi 13 juillet 1983', 'Code pénal', 'Code du travail', 'Charte DGAFP'],\n                    ans: 0,\n                    exp: 'La loi du 13 juillet 1983 en pose les bases.'\n                },\n                {\n                    q: 'Quel article du CGFP impose l\\'obligation de prévention?',\n                    opts: ['L. 134-1', 'L. 135', 'L. 136-1', 'L. 133-3'],\n                    ans: 2,\n                    exp: 'L\\'article L. 136-1 énonce cette obligation clé.'\n                }\n            ],\n            'theme2': [\n                {\n                    q: 'Depuis quand les collectivités doivent-elles avoir un dispositif? ',\n                    opts: ['1er mai 2019', '1er mai 2020', '1er février 2025', '1er janvier 2023'],\n                    ans: 1,\n                    exp: 'Le décret du 13 mars 2020 l\\'a imposé à partir du 1er mai 2020.'\n                },\n                {\n                    q: 'Combien de procédures le dispositif doit-il avoir?',\n                    opts:  ['Une procédure', 'Deux procédures', 'Trois procédures', 'Quatre procédures'],\n                    ans: 2,\n                    exp: 'Recueil, orientation et traitement des signalements.'\n                },\n                {\n                    q:  'Quels canaux de signalement sont disponibles? ',\n                    opts: ['Référent uniquement', 'Plusieurs:  référent, hiérarchie, reps, médecin', 'Hiérarchie seulement', 'Défenseur seulement'],\n                    ans: 1,\n                    exp: 'Plusieurs canaux pour faciliter la libération de la parole.'\n                },\n                {\n                    q: 'Quel principe doit être garanti?',\n                    opts: ['Publicité', 'Transparence totale', 'Confidentialité', 'Rapidité absolue'],\n                    ans:  2,\n                    exp: 'La confidentialité doit être strictement respectée.'\n                },\n                {\n                    q: 'Quel document encadre les dispositifs?',\n                    opts: ['Loi 2019', 'Charte DGAFP 2019', 'Code pénal', 'Code du travail'],\n                    ans: 1,\n                    exp: 'La Charte DGAFP de novembre 2019 est le référentiel.'\n                },\n                {\n                    q: 'Qu\\'est-ce que la mutualisation? ',\n                    opts: ['Centralisation nationale', 'Petit collectivités utilisent dispositif mutualisé', 'Suppression des référents', 'Externalisation privée'],\n                    ans:  1,\n                    exp: 'Permet aux petites collectivités un dispositif professionnel.'\n                },\n                {\n                    q: 'Qui oriente les agents victimes?',\n                    opts: ['Maire', 'Référent harcèlement', 'Préfet', 'Procureur'],\n                    ans: 1,\n                    exp: 'Le référent oriente vers les services compétents.'\n                },\n                {\n                    q: 'Quel décret a remplacé celui de 2020?',\n                    opts: ['Décret 1992', 'Décret 6 novembre 2024', 'Décret 1987', 'Décret 1982'],\n                    ans: 1,\n                    exp:  'Le décret du 6 novembre 2024 l\\'a remplacé et modernisé.'\n                },\n                {\n                    q: 'Quel principe guide l\\'orientation?',\n                    opts:  ['Égalité', 'Bienveillance', 'Neutralité absolue', 'Rapidité'],\n                    ans:  1,\n                    exp: 'La bienveillance doit guider l\\'accompagnement.'\n                },\n                {\n                    q: 'Quels documents peuvent servir de preuves?',\n                    opts: ['Certificats uniquement', 'Messages seulement', 'Témoignages seulement', 'Tous ces documents et plus'],\n                    ans: 3,\n                    exp: 'Preuves directes et indirectes sont acceptées.'\n                }\n            ],\n            'theme3': [\n                {\n                    q: 'Quelle procédure doit être engagée?',\n                    opts: ['Médiation', 'Enquête administrative', 'Procédure disciplinaire', 'Licenciement'],\n                    ans: 1,\n                    exp: 'Une enquête administrative est obligatoire.'\n                },\n                {\n                    q: 'Quelles qualités doivent avoir les enquêteurs?',\n                    opts: ['Agents depuis 10 ans', 'Formés, compétents, impartiaux', 'Magistrats', 'Tirés au sort'],\n                    ans: 1,\n                    exp: 'Ils doivent être indépendants et compétents.'\n                },\n                {\n                    q: 'Quels types de preuves sont recevables?',\n                    opts: ['Directes seulement', 'Indirectes seulement', 'Directes ET indirectes', 'Matérielles uniquement'],\n                    ans:  2,\n                    exp: 'Preuves variées:  messages, témoignages, certificats, etc.'\n                },\n                {\n                    q: 'Quel organisme a recommandé d\\'encadrer?',\n                    opts: ['Conseil d\\'État', 'Défenseur des droits', 'DGAFP', 'TA Paris'],\n                    ans: 1,\n                    exp:  'Le Défenseur des droits en 2020. '\n                },\n                {\n                    q: 'Quel est l\\'objectif principal? ',\n                    opts: ['Sanctionner immédiatement', 'Établir la matérialité des faits', 'Classer sans suite', 'Publier résultats'],\n                    ans: 1,\n                    exp: 'Établir les faits et qualifier les comportements.'\n                },\n                {\n                    q: 'Quelle posture lors des auditions?',\n                    opts: ['Neutralité absolue', 'Bienveillance avec distance', 'Confrontation', 'Rapidité'],\n                    ans:  1,\n                    exp: 'Bienveillance mais distance nécessaire.'\n                },\n                {\n                    q: 'Quel document garantit la valeur probante?',\n                    opts: ['Rapport étonnement', 'Procès-verbal d\\'audition', 'Main courante', 'Note confidentielle'],\n                    ans: 1,\n                    exp: 'PV d\\'audition signé par les parties.'\n                },\n                {\n                    q: 'Quelle instance peut être associée?',\n                    opts: ['CST ou Formation Spécialisée', 'Comité d\\'entreprise', 'CHSCT', 'Comité technique'],\n                    ans: 0,\n                    exp: 'Le CST peut participer à l\\'enquête.'\n                },\n                {\n                    q: 'Quel texte a réorganisé les instances?',\n                    opts:  ['Loi 6 août 2019', 'Décret 13 mars 2020', 'Code du travail', 'Charte DGAFP'],\n                    ans: 0,\n                    exp: 'La loi 2019 a créé le Comité Social Territorial.'\n                },\n                {\n                    q: 'Quel rôle pour la Formation Spécialisée?',\n                    opts: ['Gérer les carrières', 'Droit d\\'alerte en cas de danger', 'Négocier salaires', 'Recruter'],\n                    ans:  1,\n                    exp: 'Exercer un droit d\\'alerte face aux risques.'\n                }\n            ],\n            'theme4': [\n                {\n                    q: 'Quels frais sont pris en charge?',\n                    opts: ['Transport', 'Avocat', 'Logement', 'Formation'],\n                    ans: 1,\n                    exp:  'La protection garantit les frais d\\'avocat.'\n                },\n                {\n                    q:  'Quel texte encadre la protection?',\n                    opts: ['Articles L. 134-1 CGFP', 'Loi 13 juillet 1983', 'Décret 6 novembre 2024', 'Charte DGAFP'],\n                    ans: 0,\n                    exp: 'Articles L. 134-1 et suivants du CGFP. '\n                },\n                {\n                    q: 'Qui bénéficie de la protection? ',\n                    opts: ['Victimes uniquement', 'Victimes, témoins, lanceurs d\\'alerte', 'Plaignants pénaux', 'CDI seulement'],\n                    ans:  1,\n                    exp: 'Protection élargie à tous les protégés.'\n                },\n                {\n                    q: 'Quel document est signé avec l\\'avocat?',\n                    opts: ['Convention', 'Contrat travail', 'PV', 'Main courante'],\n                    ans: 0,\n                    exp: 'Une convention détermine les modalités.'\n                },\n                {\n                    q:  'Quel principe interdit les représailles?',\n                    opts: ['Précaution', 'Non-discrimination', 'Confidentialité', 'Proportionnalité'],\n                    ans: 1,\n                    exp: 'Article L. 133-3 du CGFP.'\n                },\n                {\n                    q: 'Quelle décision du CC a abrogé L. 134-4?',\n                    opts:  ['2024-1098 QPC du 4 juillet', '2020-800', '2019-778', '2023-1000'],\n                    ans: 0,\n                    exp:  'Décision 2024-1098 QPC du 4 juillet 2024.'\n                },\n                {\n                    q: 'Quels soutiens la protection garantit-elle?',\n                    opts:  ['Psycho', 'Juridique', 'Psycho, juridique, financier', 'Financier'],\n                    ans: 2,\n                    exp: 'Triple soutien pour les protégés.'\n                },\n                {\n                    q: 'Quand la protection est-elle à titre conservatoire?',\n                    opts: ['Plainte pénale', 'Risque d\\'atteinte grave', 'Sanction', 'Mutation'],\n                    ans: 1,\n                    exp:  'En cas de danger manifeste.'\n                },\n                {\n                    q:  'Quel texte interdit la discrimination?',\n                    opts: ['L. 135-4 CGFP', 'Loi Sapin II', 'Décret 2024', 'Charte'],\n                    ans: 0,\n                    exp: 'Article L. 135-4 du CGFP.'\n                },\n                {\n                    q: 'Quelle loi a renforcé en 2022?',\n                    opts:  ['Loi 6 août 2019', 'Loi 2022-401 du 21 mars', 'Loi 13 juillet 1983', 'Décret 13 mars 2020'],\n                    ans: 1,\n                    exp: 'Loi n° 2022-401 du 21 mars 2022.'\n                }\n            ],\n            'theme5': [\n                {\n                    q: 'Quelle sanction est la plus grave?',\n                    opts:  ['Avertissement', 'Blâme', 'Révocation', 'Exclusion temporaire'],\n                    ans:  2,\n                    exp: 'La révocation entraîne l\\'exclusion définitive.'\n                },\n                {\n                    q:  'Quel principe guide le choix?',\n                    opts: ['Rapidité', 'Proportionnalité', 'Confidentialité', 'Publicité'],\n                    ans:  1,\n                    exp: 'Adapter la sanction à la gravité des faits.'\n                },\n                {\n                    q: 'Qui peut publier les sanctions?',\n                    opts: ['CST', 'Autorité disciplinaire', 'Défenseur', 'Procureur'],\n                    ans: 1,\n                    exp: 'L\\'autorité disciplinaire peut les publier.'\n                },\n                {\n                    q: 'Peines pour harcèlement sexuel?',\n                    opts: ['1 an / 15K€', '2 ans / 30K€', '3 ans / 45K€', '5 ans / 75K€'],\n                    ans: 1,\n                    exp: '2 ans d\\'emprisonnement et 30 000 € d\\'amende.'\n                },\n                {\n                    q:  'Quel texte encadre les sanctions?',\n                    opts: ['Loi 84-53 du 26 jan 1984', 'Décret 6 nov 2024', 'Charte DGAFP', 'Code pénal'],\n                    ans:  0,\n                    exp: 'Loi n° 84-53 du 26 janvier 1984.'\n                },\n                {\n                    q: 'Quel principe permet poursuites doubles?',\n                    opts:  ['Précaution', 'Cumul de responsabilités', 'Confidentialité', 'Proportionnalité'],\n                    ans: 1,\n                    exp: 'Agent ET collectivité peuvent être poursuivis.'\n                },\n                {\n                    q:  'Quel recours pour mesures d\\'urgence?',\n                    opts: ['Référé-liberté', 'Recours annulation', 'Pleine juridiction', 'Cassation'],\n                    ans:  0,\n                    exp: 'Le référé-liberté du juge administratif.'\n                },\n                {\n                    q:  'Quelle décision en 2025?',\n                    opts:  ['CE 20 juin', 'TC 6 octobre 2025', 'TA Besançon', 'CC 4 juillet'],\n                    ans: 1,\n                    exp:  'Tribunal des conflits du 6 octobre 2025.'\n                },\n                {\n                    q: 'Projet de loi annoncé quand?',\n                    opts: ['19 mai 2025', 'Loi 2019', 'Décret 2024', 'Charte'],\n                    ans: 0,\n                    exp: 'Projet gouvernemental du 19 mai 2025.'\n                },\n                {\n                    q: 'Mesures pour accélérer les procédures?',\n                    opts: ['Chambres spécialisées', 'Formation magistrats', 'Délais', 'Toutes ces mesures'],\n                    ans: 3,\n                    exp: 'Toutes les mesures sont prévues.'\n                }\n            ]\n        };\n\n        let currentIndex = {};\n        let answers = {};\n\n        function initTheme(theme) {\n            currentIndex[theme] = 0;\n            answers[theme] = {};\n            renderQuestions(theme);\n        }\n\n        function renderQuestions(theme) {\n            const qDiv = document.getElementById('questions' + theme. slice(5));\n            const idx = currentIndex[theme];\n            const q = themes[theme][idx];\n            const answered = answers[theme][idx] !== undefined;\n\n            let html = `\n                <div class=\"question\">\n                    <div class=\"question-number\">Question ${idx + 1} / 10</div>\n                    <div class=\"question-text\">${q.q}</div>\n                    <div class=\"options\">\n            `;\n\n            q.opts.forEach((opt, i) => {\n                const isCorrect = i === q.ans;\n                const isSelected = answers[theme][idx] === i;\n                let cls = 'option';\n                if (answered) {\n                    if (isCorrect) cls += ' correct';\n                    if (isSelected && !isCorrect) cls += ' incorrect';\n                }\n                html += `\n                    <div class=\"${cls}\">\n                        <input type=\"radio\" name=\"ans${idx}\" value=\"${i}\" ${isSelected ? 'checked' : ''} ${answered ? 'disabled' : ''} onchange=\"selectAns('${theme}', ${idx}, ${i})\">\n                        <label>${opt}</label>\n                    </div>\n                `;\n            });\n\n            html += `</div>`;\n\n            if (answered) {\n                const correct = answers[theme][idx] === q. ans;\n                html += `\n                    <div class=\"feedback ${correct ? 'correct' : 'incorrect'} show\">\n                        <strong>${correct ? '✓ Correct!' : '✗ Incorrect'}</strong><br>${q.exp}\n                    </div>\n                `;\n            }\n\n            html += `</div>`;\n            qDiv.innerHTML = html;\n\n            const progress = ((idx + 1) / 10) * 100;\n            document.querySelector(`#${theme} .progress-fill`).style.width = progress + '%';\n\n            const score = Object.values(answers[theme] || {}).filter((a, i) => a === themes[theme][i]. ans).length;\n            document.getElementById('score' + theme. slice(5)).textContent = score;\n\n            const btn = document.getElementById('nextBtn' + theme.slice(5));\n            btn.disabled = answers[theme][idx] === undefined;\n            btn.textContent = idx === 9 ? 'Terminer →' : 'Suivant →';\n        }\n\n        function selectAns(theme, idx, ans) {\n            answers[theme][idx] = ans;\n            renderQuestions(theme);\n        }\n\n        function nextQuestion(theme) {\n            const idx = currentIndex[theme];\n            if (idx < 9) {\n                currentIndex[theme]++;\n                renderQuestions(theme);\n            } else {\n                finishQuiz();\n            }\n        }\n\n        function prevQuestion(theme) {\n            if (currentIndex[theme] > 0) {\n                currentIndex[theme]--;\n                renderQuestions(theme);\n            }\n        }\n\n        function switchTheme(theme, btn) {\n            document.querySelectorAll('. theme').forEach(t => t.classList. remove('active'));\n            document.getElementById(theme).classList.add('active');\n            document.querySelectorAll('. nav-btn').forEach(b => b.classList.remove('active'));\n            btn.classList.add('active');\n            if (! currentIndex[theme]) initTheme(theme);\n        }\n\n        function finishQuiz() {\n            let total = 0;\n            for (let t in themes) {\n                const score = Object.values(answers[t] || {}).filter((a, i) => a === themes[t][i].ans).length;\n                total += score;\n            }\n            const pct = Math.round((total / 50) * 100);\n            const cert = document.getElementById('certificate');\n            cert.classList.add('show');\n            const msg = pct >= 75 ? '🏆 Excellent!' : pct >= 60 ? '👍 Bien!' : '📚 À revoir';\n            document.getElementById('certContent').innerHTML = `\n                <p>${msg}</p>\n                <p>Score total: <strong>${total}/50 (${pct}%)</strong></p>\n                <p>Date:  ${new Date().toLocaleDateString('fr-FR')}</p>\n            `;\n        }\n\n        // Initialize\n        initTheme('theme1');\n    </script>\n</body>\n</html>\n```
+        .certificate h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .certificate-content {
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            min-height: 120px;
+        }
+        .certificate-footer {
+            font-style: italic;
+            color: #666;
+            margin-top: 20px;
+        }
+        .download-btn {
+            margin-top: 20px;
+            background: #27ae60;
+            padding: 10px 20px;
+        }
+        .download-btn:hover {
+            background: #219653;
+        }
+        .success-message {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        .partial-message {
+            color: #f39c12;
+            font-weight: bold;
+        }
+        .fail-message {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .progress-container {
+            width: 100%;
+            background-color: #ecf0f1;
+            border-radius: 5px;
+            margin: 20px 0;
+            height: 20px;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+        .final-score {
+            text-align: center;
+            margin: 30px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .final-score button {
+            padding: 12px 25px;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quiz : Protection des agents victimes de harcèlement dans les collectivités territoriales</h1>
 
-4.  Cliquez **"Commit changes"**
+        <!-- Navigation entre les thématiques -->
+        <div class="navigation">
+            <button onclick="showTheme('theme1')">1. Cadre légal protecteur</button>
+            <button onclick="showTheme('theme2')">2. Dispositifs de signalement</button>
+            <button onclick="showTheme('theme3')">3. Enquête administrative</button>
+            <button onclick="showTheme('theme4')">4. Protection fonctionnelle</button>
+            <button onclick="showTheme('theme5')">5. Sanctions et recours</button>
+        </div>
 
-✅ **Votre fichier est ajouté! **
+        <!-- Thématique 1 : Cadre légal protecteur -->
+        <div id="theme1" class="theme active">
+            <h2>1. Cadre légal protecteur</h2>
 
----
+            <div class="question">
+                <p><strong>Question 1/10 :</strong> La loi du 6 août 2019 de transformation de la fonction publique a introduit une obligation majeure pour les collectivités territoriales. Laquelle ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="a"> La création d'un registre public des cas de harcèlement</label>
+                    <label><input type="radio" name="q1" value="b"> La désignation obligatoire d'un référent harcèlement dans chaque collectivité</label>
+                    <label><input type="radio" name="q1" value="c"> L'obligation de licencier tout agent condamné pour harcèlement</label>
+                    <label><input type="radio" name="q1" value="d"> La suppression des comités d'hygiène et de sécurité</label>
+                </div>
+                <button onclick="checkAnswer('q1', 'b', 'La loi du 6 août 2019 a rendu obligatoire la désignation d\'un référent harcèlement dans chaque collectivité territoriale, conformément à l\'article L. 135 du Code général de la fonction publique. Ce référent a pour mission d\'accueillir, informer et orienter les agents victimes ou témoins de harcèlement.')">Valider</button>
+                <div id="feedback1" class="feedback"></div>
+            </div>
 
-### **ÉTAPE 3️⃣ :  Activer GitHub Pages**
+            <div class="question">
+                <p><strong>Question 2/10 :</strong> Quel article du Code général de la fonction publique impose aux employeurs publics de garantir des conditions de travail préservant la santé physique et mentale des agents, incluant la prévention du harcèlement ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="a"> Article L. 134-1</label>
+                    <label><input type="radio" name="q2" value="b"> Article L. 135</label>
+                    <label><input type="radio" name="q2" value="c"> Article L. 136-1</label>
+                    <label><input type="radio" name="q2" value="d"> Article L. 133-3</label>
+                </div>
+                <button onclick="checkAnswer('q2', 'c', 'L\'article L. 136-1 du Code général de la fonction publique impose aux employeurs publics de prendre les dispositions nécessaires pour garantir des conditions de travail préservant la santé physique et mentale des agents. Cela inclut explicitement la prévention et la lutte contre toutes les formes de harcèlement et de violences sexistes et sexuelles.')">Valider</button>
+                <div id="feedback2" class="feedback"></div>
+            </div>
 
-1. Allez dans **Settings** (Paramètres)
-2. Scroll vers **"Pages"** (dans le menu de gauche)
-3. Sous **"Source"**, sélectionnez : 
-   - Branch: `main`
-   - Dossier: `/ (root)`
-4. Cliquez **"Save"**
+            <div class="question">
+                <p><strong>Question 3/10 :</strong> Depuis la loi du 6 août 2019, quelle obligation supplémentaire pèse sur les employeurs publics en matière de santé mentale des agents, au-delà de la simple prévention des risques professionnels classiques ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="a"> La mise en place d'un suivi psychologique obligatoire pour tous les agents</label>
+                    <label><input type="radio" name="q3" value="b"> La création d'une cellule de crise dédiée aux risques psychosociaux</label>
+                    <label><input type="radio" name="q3" value="c"> Une obligation générale de sécurité étendue à la protection de la santé mentale, incluant la prévention du harcèlement moral et sexuel</label>
+                    <label><input type="radio" name="q3" value="d"> L'obligation de former tous les agents aux techniques de méditation et de gestion du stress</label>
+                </div>
+                <button onclick="checkAnswer('q3', 'c', 'La loi du 6 août 2019 a étendu l\'obligation générale de sécurité des employeurs publics pour inclure explicitement la protection de la santé mentale des agents. Cela signifie que les collectivités doivent désormais mettre en place des mesures concrètes pour prévenir le harcèlement moral et sexuel, ainsi que les violences sexistes, en plus des risques physiques traditionnels.')">Valider</button>
+                <div id="feedback3" class="feedback"></div>
+            </div>
 
-✅ **DEPLOYE! ** 
+            <div class="question">
+                <p><strong>Question 4/10 :</strong> Quel texte a renforcé les obligations des employeurs publics en matière de prévention du harcèlement, en imposant notamment la désignation d'un référent et en créant une obligation d'enquête administrative ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="a"> Le décret du 6 novembre 2024</label>
+                    <label><input type="radio" name="q4" value="b"> La Charte de la DGAFP de novembre 2019</label>
+                    <label><input type="radio" name="q4" value="c"> La loi du 6 août 2019 de transformation de la fonction publique</label>
+                    <label><input type="radio" name="q4" value="d"> L'accord relatif à l'égalité professionnelle du 30 novembre 2018</label>
+                </div>
+                <button onclick="checkAnswer('q4', 'c', 'La loi du 6 août 2019 a marqué un tournant en renforçant significativement les obligations des employeurs publics. Elle a notamment imposé la désignation obligatoire d\'un référent harcèlement dans chaque collectivité, ainsi qu\'une obligation d\'enquête administrative dès qu\'un agent signale des faits de harcèlement. Ces mesures visent à garantir une réponse rapide et efficace pour protéger les victimes.')">Valider</button>
+                <div id="feedback4" class="feedback"></div>
+            </div>
 
----
+            <div class="question">
+                <p><strong>Question 5/10 :</strong> Quelle instance a publié en novembre 2019 une Charte visant à encadrer le fonctionnement des dispositifs de signalement et de traitement des situations de harcèlement dans la fonction publique ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="a"> Le Défenseur des droits</label>
+                    <label><input type="radio" name="q5" value="b"> La Direction générale de l'administration et de la fonction publique (DGAFP)</label>
+                    <label><input type="radio" name="q5" value="c"> Le Conseil d'État</label>
+                    <label><input type="radio" name="q5" value="d"> Le Comité Social Territorial</label>
+                </div>
+                <button onclick="checkAnswer('q5', 'b', 'La Direction générale de l\'administration et de la fonction publique (DGAFP) a publié en novembre 2019 une Charte de fonctionnement des dispositifs de signalement et de traitement des situations de violences sexuelles, de discrimination, de harcèlement sexuel ou moral, et d\'agissements sexistes. Cette Charte constitue un référentiel essentiel pour les employeurs publics, en précisant les attendus opérationnels, les objectifs, et les garanties nécessaires pour assurer un traitement juste et rapide des signalements.')">Valider</button>
+                <div id="feedback5" class="feedback"></div>
+            </div>
 
-### **📍 VOTRE URL**
+            <div class="question">
+                <p><strong>Question 6/10 :</strong> Quel accord signé en 2018 a inspiré la Charte de la DGAFP sur la prévention du harcèlement et des violences sexistes et sexuelles dans la fonction publique ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="a"> L'accord relatif à l'égalité professionnelle entre les femmes et les hommes dans la fonction publique, signé le 30 novembre 2018</label>
+                    <label><input type="radio" name="q6" value="b"> La loi Sapin II du 9 décembre 2016</label>
+                    <label><input type="radio" name="q6" value="c"> Le décret du 13 mars 2020</label>
+                    <label><input type="radio" name="q6" value="d"> La convention collective nationale de la fonction publique territoriale</label>
+                </div>
+                <button onclick="checkAnswer('q6', 'a', 'La Charte de la DGAFP s\'inscrit dans la continuité de l\'accord relatif à l\'égalité professionnelle entre les femmes et les hommes dans la fonction publique, signé le 30 novembre 2018. Cet accord engage les employeurs publics à mettre en œuvre des actions concrètes pour prévenir et lutter contre les violences sexistes et sexuelles, ainsi que le harcèlement moral et sexuel.')">Valider</button>
+                <div id="feedback6" class="feedback"></div>
+            </div>
 
-Votre quiz sera disponible sur : 
+            <div class="question">
+                <p><strong>Question 7/10 :</strong> Quel décret, entré en vigueur le 1er février 2025, a modernisé le système de signalement des actes de harcèlement dans les collectivités territoriales, en renforçant notamment les exigences de confidentialité et les délais de traitement ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="a"> Le décret du 13 mars 2020</label>
+                    <label><input type="radio" name="q7" value="b"> Le décret du 6 novembre 2024</label>
+                    <label><input type="radio" name="q7" value="c"> Le décret du 28 mai 1982</label>
+                    <label><input type="radio" name="q7" value="d"> Le décret du 4 novembre 1992</label>
+                </div>
+                <button onclick="checkAnswer('q7', 'b', 'Le décret du 6 novembre 2024, entré en vigueur le 1er février 2025, a profondément modernisé le système de signalement des actes de harcèlement. Il a renforcé les exigences de confidentialité, précisé les procédures de traitement avec des délais contraignants, et permis la mutualisation des dispositifs entre collectivités ou via les centres de gestion.')">Valider</button>
+                <div id="feedback7" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 8/10 :</strong> Quelle obligation générale pèse sur les employeurs publics en matière de santé mentale des agents, selon l'article L. 136-1 du Code général de la fonction publique ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="a"> Une obligation de moyens, c'est-à-dire mettre en place des actions sans garantie de résultat</label>
+                    <label><input type="radio" name="q8" value="b"> Une obligation de prévention, incluant la lutte contre le harcèlement et les violences sexistes et sexuelles</label>
+                    <label><input type="radio" name="q8" value="c"> Une obligation de résultat, c'est-à-dire garantir l'absence totale de harcèlement</label>
+                    <label><input type="radio" name="q8" value="d"> Une obligation de formation annuelle pour tous les agents</label>
+                </div>
+                <button onclick="checkAnswer('q8', 'b', 'L\'article L. 136-1 du Code général de la fonction publique impose aux employeurs publics une obligation de prévention en matière de santé mentale. Cela inclut la mise en place de mesures pour prévenir et lutter contre le harcèlement moral et sexuel, ainsi que les violences sexistes et sexuelles.')">Valider</button>
+                <div id="feedback8" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 9/10 :</strong> Quel texte fondateur interdit explicitement le harcèlement moral et sexuel dans la fonction publique, posant ainsi les bases de la protection des agents ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="a"> La loi du 13 juillet 1983</label>
+                    <label><input type="radio" name="q9" value="b"> Le Code pénal</label>
+                    <label><input type="radio" name="q9" value="c"> Le Code du travail</label>
+                    <label><input type="radio" name="q9" value="d"> La Charte de la DGAFP</label>
+                </div>
+                <button onclick="checkAnswer('q9', 'a', 'La loi du 13 juillet 1983 est le texte fondateur qui interdit explicitement le harcèlement moral et sexuel dans la fonction publique. Elle pose les bases légales de la protection des agents contre ces agissements, complétée ensuite par des lois et décrets ultérieurs.')">Valider</button>
+                <div id="feedback9" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 10/10 :</strong> Quel principe, consacré par la loi du 6 août 2019, est au cœur de la lutte contre le harcèlement dans les collectivités territoriales, imposant aux employeurs publics de mettre en place des mesures actives pour prévenir ces agissements ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="a"> Le principe de précaution</label>
+                    <label><input type="radio" name="q10" value="b"> Le principe de prévention</label>
+                    <label><input type="radio" name="q10" value="c"> Le principe de confidentialité</label>
+                    <label><input type="radio" name="q10" value="d"> Le principe de proportionnalité</label>
+                </div>
+                <button onclick="checkAnswer('q10', 'b', 'Le principe de prévention est au cœur de la loi du 6 août 2019. Cette loi impose aux employeurs publics de mettre en place des mesures actives pour prévenir le harcèlement et les violences sexistes et sexuelles, plutôt que de simplement réagir une fois les faits commis.')">Valider</button>
+                <div id="feedback10" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- Thématique 2 : Dispositifs de signalement -->
+        <div id="theme2" class="theme">
+            <h2>2. Dispositifs de signalement</h2>
+
+            <div class="question">
+                <p><strong>Question 1/10 :</strong> Depuis quelle date les collectivités territoriales sont-elles tenues de mettre en place un dispositif complet de signalement des actes de harcèlement, conformément au décret du 13 mars 2020 ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q11" value="a"> 1er mai 2019</label>
+                    <label><input type="radio" name="q11" value="b"> 1er mai 2020</label>
+                    <label><input type="radio" name="q11" value="c"> 1er février 2025</label>
+                    <label><input type="radio" name="q11" value="d"> 1er janvier 2023</label>
+                </div>
+                <button onclick="checkAnswer('q11', 'b', 'Le décret du 13 mars 2020 a imposé aux collectivités territoriales de mettre en place un dispositif complet de signalement des actes de harcèlement à compter du 1er mai 2020. Ce décret a marqué une première étape décisive dans la structuration des procédures de signalement.')">Valider</button>
+                <div id="feedback11" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 2/10 :</strong> Combien de procédures distinctes et complémentaires le dispositif de signalement des actes de harcèlement doit-il obligatoirement comporter, selon les textes en vigueur ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q12" value="a"> Une procédure unique de signalement</label>
+                    <label><input type="radio" name="q12" value="b"> Deux procédures : recueil des signalements et traitement des faits</label>
+                    <label><input type="radio" name="q12" value="c"> Trois procédures : recueil des signalements, orientation des victimes, et traitement des faits</label>
+                    <label><input type="radio" name="q12" value="d"> Quatre procédures, incluant une procédure de médiation obligatoire</label>
+                </div>
+                <button onclick="checkAnswer('q12', 'c', 'Le dispositif de signalement doit obligatoirement comporter trois procédures distinctes et complémentaires : une procédure de recueil des signalements, une procédure d\'orientation des agents victimes vers les services compétents, et une procédure d\'orientation vers les autorités pour le traitement des faits.')">Valider</button>
+                <div id="feedback12" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 3/10 :</strong> Quels sont les différents canaux par lesquels un agent victime ou témoin de harcèlement peut signaler les faits dans une collectivité territoriale ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q13" value="a"> Uniquement le référent harcèlement désigné dans la collectivité</label>
+                    <label><input type="radio" name="q13" value="b"> Plusieurs canaux, incluant le référent harcèlement, le supérieur hiérarchique, les représentants du personnel, et le médecin de prévention</label>
+                    <label><input type="radio" name="q13" value="c"> Uniquement le supérieur hiérarchique direct</label>
+                    <label><input type="radio" name="q13" value="d"> Uniquement le Défenseur des droits</label>
+                </div>
+                <button onclick="checkAnswer('q13', 'b', 'Les agents disposent de multiples canaux pour signaler les faits de harcèlement. Ils peuvent s\'adresser au référent harcèlement, à leur supérieur hiérarchique, aux représentants du personnel (Comité Social Territorial), ou encore au médecin de prévention. Cette multiplicité vise à faciliter la libération de la parole.')">Valider</button>
+                <div id="feedback13" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 4/10 :</strong> Quel principe fondamental doit être garanti tout au long de la procédure de signalement des actes de harcèlement, afin de protéger les agents et encourager les signalements ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q14" value="a"> Le principe de publicité des signalements</label>
+                    <label><input type="radio" name="q14" value="b"> Le principe de transparence totale</label>
+                    <label><input type="radio" name="q14" value="c"> Le principe de confidentialité de l'identité des signataires et des personnes mises en cause</label>
+                    <label><input type="radio" name="q14" value="d"> Le principe de rapidité absolue du traitement</label>
+                </div>
+                <button onclick="checkAnswer('q14', 'c', 'Le principe de confidentialité doit être strictement garanti tout au long de la procédure de signalement. Cela signifie que l\'identité de l\'agent qui signale les faits, ainsi que celle des personnes mises en cause, ne peut être divulguée, sauf aux personnes ayant besoin d\'en connaître pour le traitement du signalement.')">Valider</button>
+                <div id="feedback14" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 5/10 :</strong> Quel document, publié par la Direction générale de l'administration et de la fonction publique (DGAFP), encadre le fonctionnement des dispositifs de signalement et de traitement des situations de harcèlement dans les collectivités territoriales ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q15" value="a"> La loi du 6 août 2019</label>
+                    <label><input type="radio" name="q15" value="b"> La Charte de fonctionnement des dispositifs de signalement, publiée en novembre 2019</label>
+                    <label><input type="radio" name="q15" value="c"> Le Code pénal</label>
+                    <label><input type="radio" name="q15" value="d"> Le Code du travail</label>
+                </div>
+                <button onclick="checkAnswer('q15', 'b', 'La Charte de fonctionnement des dispositifs de signalement et de traitement des situations de violences sexuelles, de discrimination, de harcèlement sexuel ou moral, et d\'agissements sexistes, publiée par la DGAFP en novembre 2019, constitue un référentiel essentiel pour les employeurs publics.')">Valider</button>
+                <div id="feedback15" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 6/10 :</strong> En quoi consiste la mutualisation des dispositifs de signalement entre collectivités territoriales, telle que prévue par le décret du 6 novembre 2024 ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q16" value="a"> À centraliser tous les signalements au niveau national pour une gestion unique</label>
+                    <label><input type="radio" name="q16" value="b"> À permettre aux petites collectivités, qui ne disposent pas de ressources internes suffisantes, de bénéficier d'un dispositif professionnel et sécurisé via les centres de gestion ou en partenariat avec d'autres collectivités</label>
+                    <label><input type="radio" name="q16" value="c"> À supprimer les référents harcèlement dans les petites collectivités</label>
+                    <label><input type="radio" name="q16" value="d"> À externaliser la gestion des signalements vers des entreprises privées spécialisées</label>
+                </div>
+                <button onclick="checkAnswer('q16', 'b', 'La mutualisation des dispositifs de signalement permet aux petites collectivités, qui ne disposent pas toujours de ressources internes suffisantes, de bénéficier d\'un dispositif professionnel et sécurisé. Cela peut se faire via les centres de gestion ou en partenariat avec d\'autres collectivités.')">Valider</button>
+                <div id="feedback16" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 7/10 :</strong> Quel acteur, parmi les suivants, est spécifiquement chargé d'orienter un agent victime de harcèlement vers les services compétents (médecine préventive, service social, associations spécialisées) ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q17" value="a"> Le maire de la collectivité</label>
+                    <label><input type="radio" name="q17" value="b"> Le référent harcèlement désigné dans la collectivité</label>
+                    <label><input type="radio" name="q17" value="c"> Le préfet du département</label>
+                    <label><input type="radio" name="q17" value="d"> Le procureur de la République</label>
+                </div>
+                <button onclick="checkAnswer('q17', 'b', 'Le référent harcèlement, désigné dans chaque collectivité, a pour mission d\'orienter les agents victimes vers les services compétents, tels que la médecine préventive, le service social du personnel, ou les associations spécialisées dans l\'accompagnement des victimes.')">Valider</button>
+                <div id="feedback17" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 8/10 :</strong> Quel décret, entré en vigueur en 2025, a abrogé et remplacé le décret du 13 mars 2020 pour moderniser le système de signalement des actes de harcèlement dans les collectivités territoriales ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q18" value="a"> Le décret du 4 novembre 1992</label>
+                    <label><input type="radio" name="q18" value="b"> Le décret du 6 novembre 2024</label>
+                    <label><input type="radio" name="q18" value="c"> Le décret du 30 juillet 1987</label>
+                    <label><input type="radio" name="q18" value="d"> Le décret du 28 mai 1982</label>
+                </div>
+                <button onclick="checkAnswer('q18', 'b', 'Le décret du 6 novembre 2024, entré en vigueur le 1er février 2025, a abrogé et remplacé le décret du 13 mars 2020. Il a modernisé le système de signalement en renforçant les exigences de confidentialité, en précisant les procédures de traitement avec des délais contraignants, et en permettant la mutualisation des dispositifs.')">Valider</button>
+                <div id="feedback18" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 9/10 :</strong> Quel principe doit guider l'orientation des agents victimes de harcèlement vers les services compétents, afin de garantir un accompagnement adapté et respectueux ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q19" value="a"> Le principe d'égalité de traitement entre tous les agents</label>
+                    <label><input type="radio" name="q19" value="b"> Le principe de bienveillance, pour tenir compte de la souffrance psychique des victimes</label>
+                    <label><input type="radio" name="q19" value="c"> Le principe de neutralité absolue, sans prise en compte des spécificités de chaque situation</label>
+                    <label><input type="radio" name="q19" value="d"> Le principe de rapidité, même au détriment de la qualité de l'accompagnement</label>
+                </div>
+                <button onclick="checkAnswer('q19', 'b', 'Le principe de bienveillance doit guider l\'orientation des agents victimes. Les professionnels en charge de cette orientation doivent tenir compte de la souffrance psychique des victimes et adopter une posture empathique, tout en conservant la neutralité nécessaire à l\'objectivité du traitement des signalements.')">Valider</button>
+                <div id="feedback19" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 10/10 :</strong> Quels types de documents peuvent être utilisés comme preuves dans le cadre d'un signalement ou d'une enquête administrative pour harcèlement ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q20" value="a"> Uniquement les certificats médicaux attestant d'un état de stress ou de dépression</label>
+                    <label><input type="radio" name="q20" value="b"> Uniquement les messages électroniques ou SMS envoyés par l'auteur présumé des faits</label>
+                    <label><input type="radio" name="q20" value="c"> Uniquement les témoignages écrits des collègues directs de la victime</label>
+                    <label><input type="radio" name="q20" value="d"> Tous ces documents, ainsi que d'autres éléments comme les procès-verbaux d'audition, les enregistrements audio ou vidéo (légalement obtenus), ou les constatations matérielles</label>
+                </div>
+                <button onclick="checkAnswer('q20', 'd', 'Les preuves dans le cadre d\'un signalement ou d\'une enquête administrative pour harcèlement peuvent être variées. Elles incluent les messages électroniques, les SMS, les certificats médicaux, les témoignages, les procès-verbaux d\'audition, les enregistrements audio ou vidéo (légalement obtenus), ainsi que les constatations matérielles effectuées sur les lieux de travail.')">Valider</button>
+                <div id="feedback20" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- Thématique 3 : Enquête administrative -->
+        <div id="theme3" class="theme">
+            <h2>3. Enquête administrative et rôle des instances</h2>
+
+            <div class="question">
+                <p><strong>Question 1/10 :</strong> Selon l'article 6 ter de la loi du 13 juillet 1983, quelle procédure doit obligatoirement être engagée dès qu'un agent informe son autorité territoriale de faits de harcèlement ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q21" value="a"> Une procédure de médiation interne</label>
+                    <label><input type="radio" name="q21" value="b"> Une enquête administrative</label>
+                    <label><input type="radio" name="q21" value="c"> Une procédure disciplinaire immédiate contre l'auteur présumé</label>
+                    <label><input type="radio" name="q21" value="d"> Une procédure de licenciement pour faute grave</label>
+                </div>
+                <button onclick="checkAnswer('q21', 'b', 'Dès qu\'un agent informe son autorité territoriale de faits de harcèlement, une enquête administrative doit obligatoirement être diligentée, conformément à l\'article 6 ter de la loi du 13 juillet 1983. Cette enquête vise à établir la matérialité des faits et à qualifier juridiquement les comportements reprochés.')">Valider</button>
+                <div id="feedback21" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 2/10 :</strong> Quelles qualités doivent impérativement présenter les personnes chargées de mener une enquête administrative en cas de harcèlement, selon les recommandations du Défenseur des droits ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q22" value="a"> Elles doivent être des agents de la collectivité depuis au moins 10 ans</label>
+                    <label><input type="radio" name="q22" value="b"> Elles doivent être formées, compétentes et impartiales, sans lien personnel ou professionnel avec l'agent mis en cause</label>
+                    <label><input type="radio" name="q22" value="c"> Elles doivent obligatoirement être des magistrats ou des avocats</label>
+                    <label><input type="radio" name="q22" value="d"> Elles doivent être désignées par tirage au sort parmi les agents de la collectivité</label>
+                </div>
+                <button onclick="checkAnswer('q22', 'b', 'Les enquêteurs doivent impérativement être formés, compétents et impartials. Ils ne doivent pas avoir eu de différend personnel ou professionnel avec l\'agent mis en cause, ni entretenir avec lui des relations susceptibles de faire douter de leur objectivité. Le Défenseur des droits a insisté sur la nécessité de garantir ces qualités pour assurer la crédibilité de l\'enquête.')">Valider</button>
+                <div id="feedback22" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 3/10 :</strong> Quels types de preuves peuvent être recueillis dans le cadre d'une enquête administrative pour harcèlement, selon les textes en vigueur ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q23" value="a"> Uniquement des preuves directes, comme des messages ou des enregistrements</label>
+                    <label><input type="radio" name="q23" value="b"> Uniquement des preuves indirectes, comme des certificats médicaux ou des témoignages</label>
+                    <label><input type="radio" name="q23" value="c"> Des preuves directes et indirectes, incluant messages, témoignages, certificats médicaux, et constatations matérielles</label>
+                    <label><input type="radio" name="q23" value="d"> Uniquement des preuves matérielles, comme des photographies ou des enregistrements vidéo</label>
+                </div>
+                <button onclick="checkAnswer('q23', 'c', 'Les preuves recueillies dans le cadre d\'une enquête administrative pour harcèlement peuvent être à la fois directes et indirectes. Cela inclut des messages électroniques, des SMS, des certificats médicaux, des témoignages, des enregistrements (légalement obtenus), et des constatations matérielles.')">Valider</button>
+                <div id="feedback23" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 4/10 :</strong> Quel organisme a recommandé, dans une décision du 20 avril 2020, de mieux encadrer les conditions de déroulement des enquêtes internes pour garantir la compétence et l'impartialité des enquêteurs ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q24" value="a"> Le Conseil d'État</label>
+                    <label><input type="radio" name="q24" value="b"> Le Défenseur des droits</label>
+                    <label><input type="radio" name="q24" value="c"> La Direction générale de l'administration et de la fonction publique (DGAFP)</label>
+                    <label><input type="radio" name="q24" value="d"> Le Tribunal administratif de Paris</label>
+                </div>
+                <button onclick="checkAnswer('q24', 'b', 'Le Défenseur des droits a recommandé, dans sa décision du 20 avril 2020, de mieux encadrer les conditions de déroulement des enquêtes internes. Il a souligné la nécessité de s\'assurer que les enquêteurs présentent les garanties de compétence et d\'impartialité requises.')">Valider</button>
+                <div id="feedback24" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 5/10 :</strong> Quel est l'objectif principal d'une enquête administrative en cas de signalement de harcèlement, selon les textes en vigueur ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q25" value="a"> Sanctionner immédiatement l'auteur présumé des faits</label>
+                    <label><input type="radio" name="q25" value="b"> Établir la matérialité des faits allégués et qualifier juridiquement les comportements reprochés</label>
+                    <label><input type="radio" name="q25" value="c"> Classer sans suite le signalement si les faits ne sont pas immédiatement prouvés</label>
+                    <label><input type="radio" name="q25" value="d"> Publier les résultats de l'enquête pour dissuader d'autres agissements</label>
+                </div>
+                <button onclick="checkAnswer('q25', 'b', 'L\'objectif principal d\'une enquête administrative en cas de signalement de harcèlement est d\'établir la matérialité des faits allégués et de qualifier juridiquement les comportements reprochés. Cela permet de déterminer si les faits constituent effectivement du harcèlement moral, sexuel, ou d\'autres violations des obligations statutaires.')">Valider</button>
+                <div id="feedback25" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 6/10 :</strong> Quelle posture les enquêteurs doivent-ils adopter lors des auditions des victimes présumées de harcèlement, selon les recommandations de la Direction générale du travail ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q26" value="a"> Une posture de neutralité absolue, sans tenir compte de la souffrance psychique des victimes</label>
+                    <label><input type="radio" name="q26" value="b"> Une posture de bienveillance, en tenant compte de la souffrance psychique des victimes tout en conservant une distance nécessaire à l'objectivité</label>
+                    <label><input type="radio" name="q26" value="c"> Une posture de confrontation, pour mettre en difficulté les déclarations des victimes</label>
+                    <label><input type="radio" name="q26" value="d"> Une posture de rapidité, en limitant le temps des auditions pour accélérer le traitement des dossiers</label>
+                </div>
+                <button onclick="checkAnswer('q26', 'b', 'Les enquêteurs doivent adopter une posture de bienveillance lors des auditions des victimes présumées. Ils doivent tenir compte de la souffrance psychique des victimes, tout en conservant la distance et la neutralité nécessaires à l\'objectivité de l\'enquête.')">Valider</button>
+                <div id="feedback26" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 7/10 :</strong> Quel document doit être rédigé après chaque audition dans le cadre d'une enquête administrative pour harcèlement, afin de garantir la valeur probante des témoignages ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q27" value="a"> Un rapport d'étonnement</label>
+                    <label><input type="radio" name="q27" value="b"> Un procès-verbal d'audition, dûment signé par les personnes entendues et les enquêteurs</label>
+                    <label><input type="radio" name="q27" value="c"> Une main courante</label>
+                    <label><input type="radio" name="q27" value="d"> Une note interne confidentielle</label>
+                </div>
+                <button onclick="checkAnswer('q27', 'b', 'Un procès-verbal d\'audition doit être rédigé après chaque audition et signé par les personnes entendues ainsi que par les enquêteurs. Ce document confère une valeur probante aux témoignages en cas de procédure disciplinaire ultérieure.')">Valider</button>
+                <div id="feedback27" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 8/10 :</strong> Quelle instance représentative du personnel peut être associée à une enquête administrative en cas de harcèlement, selon les dispositions de la loi du 6 août 2019 ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q28" value="a"> Le Comité Social Territorial (CST) ou sa Formation Spécialisée en matière de Santé, Sécurité et Conditions de Travail</label>
+                    <label><input type="radio" name="q28" value="b"> Le Comité d'entreprise</label>
+                    <label><input type="radio" name="q28" value="c"> Le CHSCT (Comité d'Hygiène, de Sécurité et des Conditions de Travail)</label>
+                    <label><input type="radio" name="q28" value="d"> Le Comité technique paritaire</label>
+                </div>
+                <button onclick="checkAnswer('q28', 'a', 'Le Comité Social Territorial (CST) ou sa Formation Spécialisée en matière de Santé, Sécurité et Conditions de Travail peut être associé à une enquête administrative en cas de harcèlement. Cette instance a été créée par la loi du 6 août 2019 pour remplacer les anciennes instances représentatives.')">Valider</button>
+                <div id="feedback28" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 9/10 :</strong> Quel texte a réorganisé les instances représentatives du personnel dans la fonction publique territoriale, en fusionnant les anciens Comités Techniques et les Comités d'Hygiène, de Sécurité et des Conditions de Travail ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q29" value="a"> La loi du 6 août 2019 de transformation de la fonction publique</label>
+                    <label><input type="radio" name="q29" value="b"> Le décret du 13 mars 2020</label>
+                    <label><input type="radio" name="q29" value="c"> Le Code du travail</label>
+                    <label><input type="radio" name="q29" value="d"> La Charte de la DGAFP</label>
+                </div>
+                <button onclick="checkAnswer('q29', 'a', 'La loi du 6 août 2019 de transformation de la fonction publique a réorganisé les instances représentatives du personnel. Elle a fusionné les anciens Comités Techniques et les Comités d\'Hygiène, de Sécurité et des Conditions de Travail (CHSCT) pour créer le Comité Social Territorial (CST).')">Valider</button>
+                <div id="feedback29" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 10/10 :</strong> Quel est le rôle de la Formation Spécialisée en matière de Santé, Sécurité et Conditions de Travail au sein du Comité Social Territorial ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q30" value="a"> Gérer les carrières des agents</label>
+                    <label><input type="radio" name="q30" value="b"> Exercer un droit d'alerte en cas de danger grave et imminent pour la santé ou la sécurité des agents, et proposer des mesures de prévention</label>
+                    <label><input type="radio" name="q30" value="c"> Négocier les salaires et les primes des agents</label>
+                    <label><input type="radio" name="q30" value="d"> Recruter les agents et gérer les mutations</label>
+                </div>
+                <button onclick="checkAnswer('q30', 'b', 'La Formation Spécialisée en matière de Santé, Sécurité et Conditions de Travail dispose d\'un droit d\'alerte lorsqu\'elle constate l\'existence d\'une cause de danger grave et imminent pour la santé ou la sécurité des agents. Elle peut également proposer des mesures de prévention à l\'autorité territoriale.')">Valider</button>
+                <div id="feedback30" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- Thématique 4 : Protection fonctionnelle -->
+        <div id="theme4" class="theme">
+            <h2>4. Protection fonctionnelle</h2>
+
+            <div class="question">
+                <p><strong>Question 1/10 :</strong> Quels types de frais sont intégralement pris en charge par la protection fonctionnelle pour un agent victime de harcèlement, selon les articles L. 134-1 et suivants du Code général de la fonction publique ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q31" value="a"> Les frais de transport et de restauration</label>
+                    <label><input type="radio" name="q31" value="b"> Les frais d'avocat, selon des modalités définies par convention</label>
+                    <label><input type="radio" name="q31" value="c"> Les frais de logement et de déplacement</label>
+                    <label><input type="radio" name="q31" value="d"> Les frais de formation professionnelle</label>
+                </div>
+                <button onclick="checkAnswer('q31', 'b', 'La protection fonctionnelle garantit la prise en charge intégrale des frais d\'avocat pour les agents victimes de harcèlement. Une convention doit être signée entre la collectivité employeur et l\'avocat choisi par l\'agent, déterminant le montant des honoraires.')">Valider</button>
+                <div id="feedback31" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 2/10 :</strong> Quel texte encadre spécifiquement la protection fonctionnelle des agents publics victimes de harcèlement, en précisant les modalités de prise en charge des frais d'avocat et d'accompagnement ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q32" value="a"> Les articles L. 134-1 et suivants du Code général de la fonction publique</label>
+                    <label><input type="radio" name="q32" value="b"> La loi du 13 juillet 1983</label>
+                    <label><input type="radio" name="q32" value="c"> Le décret du 6 novembre 2024</label>
+                    <label><input type="radio" name="q32" value="d"> La Charte de la DGAFP</label>
+                </div>
+                <button onclick="checkAnswer('q32', 'a', 'Les articles L. 134-1 et suivants du Code général de la fonction publique encadrent la protection fonctionnelle. Ils précisent notamment les modalités de prise en charge des frais d\'avocat et d\'accompagnement psychologique pour les agents victimes.')">Valider</button>
+                <div id="feedback32" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 3/10 :</strong> Qui bénéficie automatiquement de la protection fonctionnelle en cas de harcèlement dans les collectivités territoriales, selon les textes en vigueur ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q33" value="a"> Uniquement les agents victimes de harcèlement</label>
+                    <label><input type="radio" name="q33" value="b"> Les agents victimes, les témoins des faits, et les lanceurs d'alerte</label>
+                    <label><input type="radio" name="q33" value="c"> Uniquement les agents ayant déposé une plainte pénale</label>
+                    <label><input type="radio" name="q33" value="d"> Uniquement les agents en CDI</label>
+                </div>
+                <button onclick="checkAnswer('q33', 'b', 'La protection fonctionnelle s\'étend aux agents victimes de harcèlement, mais aussi aux témoins des faits et aux lanceurs d\'alerte. Cette extension vise à éviter toute mesure de rétorsion susceptible de décourager la dénonciation des agissements répréhensibles.')">Valider</button>
+                <div id="feedback33" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 4/10 :</strong> Quel document doit obligatoirement être signé entre la collectivité employeur et l'avocat choisi par un agent protégé, pour déterminer les modalités de prise en charge des frais de défense ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q34" value="a"> Une convention</label>
+                    <label><input type="radio" name="q34" value="b"> Un contrat de travail</label>
+                    <label><input type="radio" name="q34" value="c"> Un procès-verbal</label>
+                    <label><input type="radio" name="q34" value="d"> Une main courante</label>
+                </div>
+                <button onclick="checkAnswer('q34', 'a', 'Une convention doit obligatoirement être signée entre la collectivité employeur et l\'avocat choisi par l\'agent protégé. Ce document détermine le montant des honoraires, selon un tarif horaire ou un forfait global pour l\'ensemble de la procédure.')">Valider</button>
+                <div id="feedback34" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 5/10 :</strong> Quel principe, énoncé à l'article L. 133-3 du Code général de la fonction publique, interdit toute forme de représailles à l'encontre des victimes, des témoins et des lanceurs d'alerte ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q35" value="a"> Le principe de précaution</label>
+                    <label><input type="radio" name="q35" value="b"> Le principe de non-discrimination et de protection contre les représailles</label>
+                    <label><input type="radio" name="q35" value="c"> Le principe de confidentialité</label>
+                    <label><input type="radio" name="q35" value="d"> Le principe de proportionnalité</label>
+                </div>
+                <button onclick="checkAnswer('q35', 'b', 'L\'article L. 133-3 du Code général de la fonction publique établit un principe absolu de protection contre toute forme de représailles à l\'encontre des victimes, des témoins et des lanceurs d\'alerte. Aucune mesure discriminatoire ne peut être prise contre eux.')">Valider</button>
+                <div id="feedback35" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 6/10 :</strong> Quelle décision du Conseil constitutionnel, rendue en 2024, a abrogé l'article L. 134-4 du Code général de la fonction publique, qui prévoyait que l'agent devait rembourser les sommes perçues au titre de la protection fonctionnelle s'il était ultérieurement reconnu coupable ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q36" value="a"> Décision n° 2024-1098 QPC du 4 juillet 2024</label>
+                    <label><input type="radio" name="q36" value="b"> Décision n° 2020-800 QPC du 18 décembre 2020</label>
+                    <label><input type="radio" name="q36" value="c"> Décision n° 2019-778 QPC du 21 mars 2019</label>
+                    <label><input type="radio" name="q36" value="d"> Décision n° 2023-1000 QPC du 10 mai 2023</label>
+                </div>
+                <button onclick="checkAnswer('q36', 'a', 'La décision n° 2024-1098 QPC du 4 juillet 2024 du Conseil constitutionnel a déclaré contraire à la Constitution l\'article L. 134-4 du Code général de la fonction publique. Cet article prévoyait que l\'agent devait rembourser les sommes perçues au titre de la protection fonctionnelle s\'il était ultérieurement reconnu coupable.')">Valider</button>
+                <div id="feedback36" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 7/10 :</strong> Quels types de soutien la protection fonctionnelle garantit-elle aux agents victimes de harcèlement, selon les textes en vigueur ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q37" value="a"> Uniquement un soutien psychologique</label>
+                    <label><input type="radio" name="q37" value="b"> Uniquement un soutien juridique</label>
+                    <label><input type="radio" name="q37" value="c"> Un soutien psychologique, juridique et financier</label>
+                    <label><input type="radio" name="q37" value="d"> Uniquement un soutien financier pour les frais de justice</label>
+                </div>
+                <button onclick="checkAnswer('q37', 'c', 'La protection fonctionnelle garantit aux agents victimes de harcèlement un soutien psychologique, un soutien juridique (prise en charge des frais d\'avocat), et un soutien financier pour la réparation intégrale de leur préjudice, tant matériel que moral.')">Valider</button>
+                <div id="feedback37" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 8/10 :</strong> Dans quel cas la protection fonctionnelle peut-elle être accordée à titre conservatoire, selon l'article L. 134-6 du Code général de la fonction publique ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q38" value="a"> En cas de plainte pénale déposée par la victime</label>
+                    <label><input type="radio" name="q38" value="b"> En cas de risque manifeste d'atteinte grave à l'intégrité physique de l'agent</label>
+                    <label><input type="radio" name="q38" value="c"> En cas de sanction disciplinaire prononcée contre l'auteur présumé</label>
+                    <label><input type="radio" name="q38" value="d"> En cas de mutation de l'agent victime</label>
+                </div>
+                <button onclick="checkAnswer('q38', 'b', 'La protection fonctionnelle peut être accordée à titre conservatoire lorsque l\'administration est informée de l\'existence d\'un risque manifeste d\'atteinte grave à l\'intégrité physique de l\'agent. Des mesures d\'urgence doivent alors être prises sans délai.')">Valider</button>
+                <div id="feedback38" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 9/10 :</strong> Quel texte interdit expressément toute mesure discriminatoire ou représailles à l'encontre d'un agent ayant signalé de bonne foi des faits de harcèlement, même si ces faits ne sont pas finalement établis ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q39" value="a"> Article L. 135-4 du Code général de la fonction publique</label>
+                    <label><input type="radio" name="q39" value="b"> Loi Sapin II du 9 décembre 2016</label>
+                    <label><input type="radio" name="q39" value="c"> Décret du 6 novembre 2024</label>
+                    <label><input type="radio" name="q39" value="d"> Charte de la DGAFP</label>
+                </div>
+                <button onclick="checkAnswer('q39', 'a', 'L\'article L. 135-4 du Code général de la fonction publique interdit expressément toute mesure discriminatoire ou représailles à l\'encontre d\'un agent ayant signalé de bonne foi des faits de harcèlement, même si ces faits ne sont pas finalement établis.')">Valider</button>
+                <div id="feedback39" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 10/10 :</strong> Quelle loi, adoptée en 2022, a considérablement renforcé la protection des lanceurs d'alerte en instaurant un régime de présomption probatoire favorable à l'agent qui s'estime victime de représailles ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q40" value="a"> Loi du 6 août 2019</label>
+                    <label><input type="radio" name="q40" value="b"> Loi n° 2022-401 du 21 mars 2022</label>
+                    <label><input type="radio" name="q40" value="c"> Loi du 13 juillet 1983</label>
+                    <label><input type="radio" name="q40" value="d"> Décret du 13 mars 2020</label>
+                </div>
+                <button onclick="checkAnswer('q40', 'b', 'La loi n° 2022-401 du 21 mars 2022 a renforcé la protection des lanceurs d\'alerte en instaurant un régime de présomption probatoire. Désormais, dès que le requérant présente des éléments de fait permettant de supposer qu\'il a signalé des faits de harcèlement, il incombe à l\'employeur de prouver que la décision contestée est justifiée par des éléments objectifs.')">Valider</button>
+                <div id="feedback40" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- Thématique 5 : Sanctions et recours -->
+        <div id="theme5" class="theme">
+            <h2>5. Sanctions et recours</h2>
+
+            <div class="question">
+                <p><strong>Question 1/10 :</strong> Quelle est la sanction disciplinaire la plus grave pouvant être prononcée contre un agent auteur de harcèlement moral ou sexuel dans la fonction publique territoriale, selon les textes en vigueur ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q41" value="a"> L'avertissement</label>
+                    <label><input type="radio" name="q41" value="b"> Le blâme</label>
+                    <label><input type="radio" name="q41" value="c"> La révocation, entraînant l'exclusion définitive de la fonction publique</label>
+                    <label><input type="radio" name="q41" value="d"> L'exclusion temporaire de fonctions pour une durée maximale de 15 jours</label>
+                </div>
+                <button onclick="checkAnswer('q41', 'c', 'La révocation est la sanction disciplinaire la plus grave dans la fonction publique territoriale. Elle entraîne l\'exclusion définitive de la fonction publique et la radiation des cadres.')">Valider</button>
+                <div id="feedback41" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 2/10 :</strong> Quel principe fondamental doit guider le choix de la sanction disciplinaire en cas de harcèlement, selon la jurisprudence administrative ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q42" value="a"> Le principe de rapidité, pour sanctionner au plus vite</label>
+                    <label><input type="radio" name="q42" value="b"> Le principe de proportionnalité, pour adapter la sanction à la gravité des faits</label>
+                    <label><input type="radio" name="q42" value="c"> Le principe de confidentialité, pour éviter toute publicité</label>
+                    <label><input type="radio" name="q42" value="d"> Le principe de publicité, pour dissuader d'autres agissements</label>
+                </div>
+                <button onclick="checkAnswer('q42', 'b', 'Le principe de proportionnalité est essentiel dans le choix de la sanction disciplinaire. L\'autorité disciplinaire doit apprécier la gravité de la faute commise et déterminer une sanction adaptée, en tenant compte des circonstances de l\'affaire et des antécédents de l\'agent.')">Valider</button>
+                <div id="feedback42" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 3/10 :</strong> Quelle instance peut décider de publier les sanctions disciplinaires prononcées contre des agents auteurs de harcèlement, afin de renforcer l'effet dissuasif ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q43" value="a"> Le Comité Social Territorial</label>
+                    <label><input type="radio" name="q43" value="b"> L'autorité investie du pouvoir disciplinaire, après avis du conseil de discipline</label>
+                    <label><input type="radio" name="q43" value="c"> Le Défenseur des droits</label>
+                    <label><input type="radio" name="q43" value="d"> Le procureur de la République</label>
+                </div>
+                <button onclick="checkAnswer('q43', 'b', 'L\'autorité investie du pouvoir disciplinaire peut décider de publier les sanctions disciplinaires prononcées, après avis du conseil de discipline. Cette mesure vise à renforcer l\'effet dissuasif et à démontrer que les signalements sont traités.')">Valider</button>
+                <div id="feedback43" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 4/10 :</strong> Quelles sont les peines encourues par un agent auteur de harcèlement sexuel dans le cadre professionnel, selon l'article 222-33 du Code pénal ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q44" value="a"> 1 an d'emprisonnement et 15 000 € d'amende</label>
+                    <label><input type="radio" name="q44" value="b"> 2 ans d'emprisonnement et 30 000 € d'amende</label>
+                    <label><input type="radio" name="q44" value="c"> 3 ans d'emprisonnement et 45 000 € d'amende en cas de circonstances aggravantes</label>
+                    <label><input type="radio" name="q44" value="d"> 5 ans d'emprisonnement et 75 000 € d'amende</label>
+                </div>
+                <button onclick="checkAnswer('q44', 'b', 'Le harcèlement sexuel dans le cadre professionnel est puni de 2 ans d\'emprisonnement et 30 000 € d\'amende, selon l\'article 222-33 du Code pénal. En cas de circonstances aggravantes (comme l\'abus d\'autorité), la peine peut être portée à 3 ans d\'emprisonnement et 45 000 € d\'amende.')">Valider</button>
+                <div id="feedback44" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 5/10 :</strong> Quel texte encadre spécifiquement les sanctions disciplinaires applicables aux fonctionnaires territoriaux auteurs de harcèlement moral ou sexuel ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q45" value="a"> La loi n° 84-53 du 26 janvier 1984 portant dispositions statutaires relatives à la fonction publique territoriale</label>
+                    <label><input type="radio" name="q45" value="b"> Le décret du 6 novembre 2024</label>
+                    <label><input type="radio" name="q45" value="c"> La Charte de la DGAFP</label>
+                    <label><input type="radio" name="q45" value="d"> Le Code pénal</label>
+                </div>
+                <button onclick="checkAnswer('q45', 'a', 'La loi n° 84-53 du 26 janvier 1984 encadre les sanctions disciplinaires applicables aux fonctionnaires territoriaux. Les auteurs de harcèlement moral ou sexuel s\'exposent à des sanctions pouvant aller jusqu\'à la révocation.')">Valider</button>
+                <div id="feedback45" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 6/10 :</strong> Quel principe juridique, reconnu par le Tribunal des conflits en 2025, permet aux victimes de harcèlement de poursuivre simultanément l'agent harceleur et la collectivité employeur pour obtenir une réparation intégrale de leurs préjudices ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q46" value="a"> Le principe de précaution</label>
+                    <label><input type="radio" name="q46" value="b"> Le principe de cumul de responsabilités</label>
+                    <label><input type="radio" name="q46" value="c"> Le principe de confidentialité</label>
+                    <label><input type="radio" name="q46" value="d"> Le principe de proportionnalité</label>
+                </div>
+                <button onclick="checkAnswer('q46', 'b', 'Le principe de cumul de responsabilités, reconnu par le Tribunal des conflits en 2025, permet aux victimes de harcèlement de poursuivre simultanément l\'agent harceleur (devant le juge judiciaire) et la collectivité employeur (devant le juge administratif). Cela offre une double voie d\'action pour obtenir une réparation intégrale des préjudices subis.')">Valider</button>
+                <div id="feedback46" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 7/10 :</strong> Quel recours juridique permet à un agent victime de harcèlement d'obtenir des mesures provisoires en urgence pour faire cesser une atteinte grave et manifestement illégale à une liberté fondamentale, comme le droit à la santé ou à la dignité ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q47" value="a"> Le référé-liberté devant le juge administratif</label>
+                    <label><input type="radio" name="q47" value="b"> Le recours en annulation</label>
+                    <label><input type="radio" name="q47" value="c"> Le recours en pleine juridiction</label>
+                    <label><input type="radio" name="q47" value="d"> Le recours en cassation</label>
+                </div>
+                <button onclick="checkAnswer('q47', 'a', 'Le référé-liberté devant le juge administratif permet d\'obtenir des mesures provisoires en urgence pour faire cesser une atteinte grave et manifestement illégale à une liberté fondamentale, comme le droit à la santé ou à la dignité. Ce recours est particulièrement adapté aux situations de harcèlement.')">Valider</button>
+                <div id="feedback47" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 8/10 :</strong> Quelle décision jurisprudentielle, rendue en 2025, a reconnu pour la première fois le principe du cumul de responsabilités en matière de harcèlement, offrant ainsi aux victimes une double voie d'action ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q48" value="a"> Décision du Conseil d'État du 20 juin 2025</label>
+                    <label><input type="radio" name="q48" value="b"> Décision du Tribunal des conflits du 6 octobre 2025</label>
+                    <label><input type="radio" name="q48" value="c"> Décision du Tribunal administratif de Besançon du 6 juin 2025</label>
+                    <label><input type="radio" name="q48" value="d"> Décision du Conseil constitutionnel du 4 juillet 2024</label>
+                </div>
+                <button onclick="checkAnswer('q48', 'b', 'La décision du Tribunal des conflits du 6 octobre 2025 a reconnu pour la première fois le principe du cumul de responsabilités en matière de harcèlement. Cette décision permet aux victimes de poursuivre simultanément l\'agent harceleur (responsabilité civile personnelle) et la collectivité employeur (responsabilité administrative).')">Valider</button>
+                <div id="feedback48" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 9/10 :</strong> Quel projet de loi, annoncé en 2025, vise à renforcer la protection des agents publics victimes de violences et de menaces dans l'exercice de leurs fonctions ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q49" value="a"> Projet de loi gouvernemental annoncé le 19 mai 2025</label>
+                    <label><input type="radio" name="q49" value="b"> Loi du 6 août 2019</label>
+                    <label><input type="radio" name="q49" value="c"> Décret du 6 novembre 2024</label>
+                    <label><input type="radio" name="q49" value="d"> Charte de la DGAFP</label>
+                </div>
+                <button onclick="checkAnswer('q49', 'a', 'Un projet de loi gouvernemental a été annoncé le 19 mai 2025 pour renforcer la protection des agents publics victimes de violences et de menaces. Ce texte prévoit notamment l\'extension de la protection fonctionnelle aux proches des agents menacés et la création d\'un droit pour l\'administration de porter plainte au nom de l\'agent victime.')">Valider</button>
+                <div id="feedback49" class="feedback"></div>
+            </div>
+
+            <div class="question">
+                <p><strong>Question 10/10 :</strong> Quelles mesures sont prévues par le projet de loi de 2025 pour accélérer les procédures judiciaires en matière de harcèlement et de violences commis sur des agents publics ?</p>
+                <div class="options">
+                    <label><input type="radio" name="q50" value="a"> La création de chambres spécialisées au sein des tribunaux judiciaires</label>
+                    <label><input type="radio" name="q50" value="b"> La formation spécifique des magistrats et des personnels de greffe</label>
+                    <label><input type="radio" name="q50" value="c"> La définition d'objectifs de délais de jugement pour ces affaires</label>
+                    <label><input type="radio" name="q50" value="d"> Toutes ces mesures</label>
+                </div>
+                <button onclick="checkAnswer('q50', 'd', 'Le projet de loi de 2025 prévoit plusieurs mesures pour accélérer les procédures judiciaires en matière de harcèlement et de violences commis sur des agents publics. Cela inclut la création de chambres spécialisées, la formation des magistrats, et la définition d\'objectifs de délais de jugement.')">Valider</button>
+                <div id="feedback50" class="feedback"></div>
+            </div>
+        </div>
+
+        <div class="score">
+            Score : <span id="score">0</span>/50
+        </div>
+
+        <div class="final-score">
+            <button onclick="showCertificate()">Voir mon certificat</button>
+        </div>
+
+        <!-- Certificat de participation ajouté -->
+        <div id="certificate" class="certificate">
+            <h2>🏆 Certificat de participation</h2>
+
+            <div class="progress-container">
+                <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+            </div>
+
+            <div class="certificate-content">
+                <p><strong>Ce certificat atteste que</strong></p>
+                <p id="user-name" style="font-size: 20px; font-weight: bold; color: #2c3e50; margin: 15px 0;">[Nom du participant]</p>
+
+                <p><strong>a complété le quiz sur</strong></p>
+                <p style="font-size: 18px; font-weight: bold; color: #3498db; margin-bottom: 20px;">
+                    "Protection des agents victimes de harcèlement dans les collectivités territoriales"
+                </p>
+
+                <div id="result-message">
+                    <!-- Message dynamique basé sur le score -->
+                </div>
+
+                <p style="margin-top: 15px; font-size: 14px;">
+                    Ce quiz couvre les aspects juridiques, les dispositifs de signalement, les enquêtes administratives,
+                    la protection fonctionnelle, ainsi que les sanctions et recours disponibles.
+                </p>
+            </div>
+
+            <div class="certificate-footer">
+                <p>Score obtenu : <span id="certificate-score">0</span>/50 (<span id="certificate-percentage">0</span>%)</p>
+                <p>Délivré le <span id="certificate-date"></span></p>
+                <p style="margin-top: 10px; font-size: 12px;">Ce certificat est généré automatiquement à l'issue du quiz.</p>
+            </div>
+
+            <button class="download-btn" onclick="downloadCertificate()">Télécharger le certificat</button>
+        </div>
+    </div>
+
+    <script>
+        let score = 0;
+        let totalQuestions = 50;
+        let answeredQuestions = 0;
+
+        // Fonctions originales conservées sans modification
+        function showTheme(themeId) {
+            document.querySelectorAll('.theme').forEach(theme => {
+                theme.classList.remove('active');
+            });
+            document.getElementById(themeId).classList.add('active');
+        }
+
+        function checkAnswer(questionId, correctAnswer, explanation) {
+            const selectedOption = document.querySelector(`input[name="${questionId}"]:checked`);
+            const feedbackElement = document.getElementById(`feedback${questionId.slice(1)}`);
+
+            if (selectedOption) {
+                answeredQuestions++;
+                if (selectedOption.value === correctAnswer) {
+                    feedbackElement.textContent = "✅ Bonne réponse ! " + explanation;
+                    feedbackElement.className = "feedback correct";
+                    score++;
+                } else {
+                    feedbackElement.textContent = "❌ Mauvaise réponse. " + explanation;
+                    feedbackElement.className = "feedback incorrect";
+                }
+                feedbackElement.style.display = "block";
+                document.getElementById("score").textContent = score;
+            } else {
+                alert("Veuillez sélectionner une réponse.");
+            }
+        }
+
+        // Nouvelle fonction pour afficher le certificat
+        function showCertificate() {
+            const certificate = document.getElementById('certificate');
+            const percentage = Math.round((score / totalQuestions) * 100);
+            const resultMessage = document.getElementById('result-message');
+            const progressBar = document.getElementById('progress-bar');
+
+            // Mettre à jour les éléments dynamiques
+            document.getElementById('certificate-score').textContent = score;
+            document.getElementById('certificate-percentage').textContent = percentage;
+
+            // Mettre à jour la barre de progression
+            progressBar.style.width = percentage + '%';
+            if (percentage < 30) progressBar.style.backgroundColor = '#e74c3c'; // Rouge
+            else if (percentage < 70) progressBar.style.backgroundColor = '#f39c12'; // Orange
+            else progressBar.style.backgroundColor = '#27ae60'; // Vert
+
+            // Mettre à jour la date
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('certificate-date').textContent = today.toLocaleDateString('fr-FR', options);
+
+            // Message personnalisé selon le score
+            let message = '';
+
+            if (percentage >= 90) {
+                message = `
+                    <p class="success-message">🎉 Excellence exceptionnelle !</p>
+                    <p>Félicitations pour ce score remarquable de <strong>${percentage}%</strong> !
+                    Vous maîtrisez parfaitement les mécanismes de protection contre le harcèlement dans les collectivités territoriales.
+                    Vos connaissances pourraient être <strong>très utiles</strong> pour :
+                    <ul style="text-align: left; margin: 10px 0 0 30px;">
+                        <li>Conseiller des collègues ou des agents victimes</li>
+                        <li>Participer à des cellules de prévention</li>
+                        <li>Animer des formations sur ces sujets</li>
+                    </ul>
+                    </p>
+                    <p style="margin-top: 10px; font-style: italic;">Continuez à promouvoir ces enjeux essentiels pour un environnement de travail sain !</p>
+                `;
+            }
+            else if (percentage >= 75) {
+                message = `
+                    <p class="success-message">👏 Très bon résultat !</p>
+                    <p>Avec <strong>${percentage}%</strong> de bonnes réponses, vous avez une <strong>solide compréhension</strong>
+                    des dispositifs de protection contre le harcèlement. Vos connaissances couvrent bien :
+                    <ul style="text-align: left; margin: 10px 0 0 30px;">
+                        <li>Le cadre légal et les obligations des collectivités</li>
+                        <li>Les procédures de signalement et d'enquête</li>
+                        <li>Les droits des agents victimes</li>
+                    </ul>
+                    </p>
+                    <p style="margin-top: 10px;">Une petite révision des points les moins maîtrisés vous permettrait d'atteindre l'excellence !</p>
+                `;
+            }
+            else if (percentage >= 60) {
+                message = `
+                    <p class="success-message">📚 Bon travail !</p>
+                    <p>Votre score de <strong>${percentage}%</strong> montre que vous avez acquis les <strong>connaissances de base</strong>
+                    sur la protection des agents. Vous maîtrisez notamment :
+                    <ul style="text-align: left; margin: 10px 0 0 30px;">
+                        <li>Les principes généraux de prévention</li>
+                        <li>Les acteurs clés (référents, CST, etc.)</li>
+                        <li>Les grandes lignes des procédures</li>
+                    </ul>
+                    </p>
+                    <p style="margin-top: 10px;">Pour progresser, nous vous recommandons de :
+                    <ul style="text-align: left; margin: 10px 0 0 30px;">
+                        <li>Revoir les questions manquées</li>
+                        <li>Étudier les textes cités (loi de 2019, décret de 2024, etc.)</li>
+                        <li>Vous intéresser aux jurisprudences récentes</li>
+                    </ul>
+                    </p>
+                `;
+            }
+            else if (percentage >= 40) {
+                message = `
+                    <p class="partial-message">⚠️ Résultat moyen</p>
+                    <p>Votre score de <strong>${percentage}%</strong> indique que vous avez <strong>des lacunes importantes</strong>
+                    sur ce sujet crucial. Les collectivités territoriales ont des <strong>obligations légales strictes</strong>
+                    en matière de prévention du harcèlement.</p>
+                    <p style="margin-top: 10px;">Les points à travailler en priorité :
+                    <ul style="text-align: left; margin: 10px 0 0 30px;">
+                        <li>Le cadre légal (loi de 2019, articles du CGFP)</li>
+                        <li>Les procédures de signalement et d'enquête</li>
+                        <li>Les droits des agents et la protection fonctionnelle</li>
+                    </ul>
+                    </p>
+                    <p style="margin-top: 10px;">Une <strong>formation complémentaire</strong> serait très utile pour maîtriser ces enjeux.</p>
+                `;
+            }
+            else {
+                message = `
+                    <p class="fail-message">❌ Résultat insuffisant</p>
+                    <p>Avec <strong>${percentage}%</strong> de bonnes réponses, vos connaissances sur la protection
+                    contre le harcèlement dans les collectivités territoriales sont <strong>très limitées</strong>.</p>
+                    <p style="margin-top: 10px;">Ce sujet est pourtant <strong>essentiel</strong> pour :
+                    <ul style="text-align: left; margin: 10px 0 0 30px;">
+                        <li>Protéger les agents et respecter leurs droits</li>
+                        <li>Éviter des sanctions pour la collectivité</li>
+                        <li>Créer un environnement de travail sain</li>
+                    </ul>
+                    </p>
+                    <p style="margin-top: 10px;">Nous vous <strong>recommandons vivement</strong> de :
+                    <ul style="text-align: left; margin: 10px 0 0 30px;">
+                        <li>Étudier les textes de référence (loi 2019, décret 2024)</li>
+                        <li>Suivre une formation spécifique</li>
+                        <li>Recommencer ce quiz après révision</li>
+                    </ul>
+                    </p>
+                `;
+            }
+
+            resultMessage.innerHTML = message;
+            certificate.classList.add('active');
+            certificate.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Fonction pour télécharger le certificat
+        function downloadCertificate() {
+            const userName = prompt("Veuillez entrer votre nom pour le certificat:", "Nom Prénom");
+
+            if (userName) {
+                document.getElementById('user-name').textContent = userName;
+
+                // Utiliser html2canvas pour capturer le certificat
+                if (typeof html2canvas !== 'undefined') {
+                    html2canvas(document.getElementById('certificate')).then(canvas => {
+                        const link = document.createElement('a');
+                        link.download = 'Certificat_Protection_Harcelement_' + userName.replace(/\s+/g, '_') + '.png';
+                        link.href = canvas.toDataURL('image/png');
+                        link.click();
+                    });
+                } else {
+                    alert("Le téléchargement n'est pas disponible. Veuillez actualiser la page et réessayer.");
+                }
+            }
+        }
+
+        // Charger html2canvas dynamiquement
+        const script = document.createElement('script');
+        script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
+        script.onload = function() {
+            console.log('html2canvas chargé avec succès');
+        };
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>
