@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Protection Harcèlement - Fonction Publique</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:  linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius:  15px;
+            box-shadow:  0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 { text-align: center; color: #667eea; margin-bottom: 10px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 30px; }
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content:  center;
+            margin-bottom:  30px;
+        }
+        .nav-btn {
+            padding: 15px 25px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .nav-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        .nav-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        .theme { display: none; }
+        . theme. active { display: block; }
+        .theme-title {
+            color: #667eea;
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            text-align:  center;
+        }
+        . progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 0%;
+            transition:  width 0.3s;
+        }
+        .question {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius:  10px;
+            border-left:  5px solid #667eea;
+        }
+        .question-number {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom:  10px;
+        }
+        .question-text {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        .option:hover {
+            border-color: #667eea;
+            background: #f0f0ff;
+        }
+        .option input[type="radio"] {
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .option. correct {
+            border-color:  #4CAF50;
+            background: #E8F5E9;
+        }
+        .option.incorrect {
+            border-color: #F44336;
+            background: #FFEBEE;
+        }
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius:  8px;
+            display:  none;
+        }
+        . feedback.show {
+            display: block;
+        }
+        . feedback. correct {
+            background: #E8F5E9;
+            color: #2E7D32;
+            border-left: 4px solid #4CAF50;
+        }
+        .feedback.incorrect {
+            background: #FFEBEE;
+            color: #C62828;
+            border-left: 4px solid #F44336;
+        }
+        .score {
+            text-align: center;
+            font-size: 24px;
+            font-weight:  bold;
+            color: #667eea;
+            padding: 20px;
+            background: #f0f0ff;
+            border-radius: 10px;
+            margin:  30px 0;
+        }
+        button {
+            padding: 12px 30px;
+            border: none;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition:  all 0.3s;
+            font-size: 1em;
+        }
+        button: hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .certificate {
+            display: none;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+            padding: 40px;
+            border-radius:  15px;
+            border: 3px solid #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .certificate. show { display: block; }
+        . certificate-title { font-size: 2.5em; color: #667eea; margin-bottom: 20px; font-weight: bold; }
+        .certificate-content { font-size: 1.2em; color: #333; margin-bottom: 20px; }
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius:  50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 30px;
+            font-size:  3em;
+            font-weight:  bold;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.5em; }\n            .nav-buttons { gap: 10px; }\n            .nav-btn { padding: 12px 20px; font-size: 0.9em; }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>🎓 Quiz Protection Harcèlement</h1>\n        <p class=\"subtitle\">Fonction Publique Territoriale</p>\n\n        <!-- Navigation -->\n        <div class=\"nav-buttons\">\n            <button class=\"nav-btn active\" onclick=\"switchTheme('theme1', this)\">1. Cadre légal</button>\n            <button class=\"nav-btn\" onclick=\"switchTheme('theme2', this)\">2. Signalement</button>\n            <button class=\"nav-btn\" onclick=\"switchTheme('theme3', this)\">3. Enquête</button>\n            <button class=\"nav-btn\" onclick=\"switchTheme('theme4', this)\">4. Protection</button>\n            <button class=\"nav-btn\" onclick=\"switchTheme('theme5', this)\">5. Recours</button>\n        </div>\n\n        <!-- THÈME 1 -->\n        <div id=\"theme1\" class=\"theme active\">\n            <h2 class=\"theme-title\">1. Cadre légal protecteur</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions1\"></div>\n            <div class=\"score\">Score :  <span id=\"score1\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme1')\">← Précédent</button>\n                <button id=\"nextBtn1\" onclick=\"nextQuestion('theme1')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- THÈME 2 -->\n        <div id=\"theme2\" class=\"theme\">\n            <h2 class=\"theme-title\">2. Dispositifs de signalement</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions2\"></div>\n            <div class=\"score\">Score : <span id=\"score2\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme2')\">← Précédent</button>\n                <button id=\"nextBtn2\" onclick=\"nextQuestion('theme2')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- THÈME 3 -->\n        <div id=\"theme3\" class=\"theme\">\n            <h2 class=\"theme-title\">3. Enquête administrative</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions3\"></div>\n            <div class=\"score\">Score : <span id=\"score3\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme3')\">← Précédent</button>\n                <button id=\"nextBtn3\" onclick=\"nextQuestion('theme3')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- THÈME 4 -->\n        <div id=\"theme4\" class=\"theme\">\n            <h2 class=\"theme-title\">4. Protection fonctionnelle</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions4\"></div>\n            <div class=\"score\">Score : <span id=\"score4\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme4')\">← Précédent</button>\n                <button id=\"nextBtn4\" onclick=\"nextQuestion('theme4')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- THÈME 5 -->\n        <div id=\"theme5\" class=\"theme\">\n            <h2 class=\"theme-title\">5. Sanctions et recours</h2>\n            <div class=\"progress-bar\"><div class=\"progress-fill\" style=\"width: 0%;\"></div></div>\n            <div id=\"questions5\"></div>\n            <div class=\"score\">Score : <span id=\"score5\">0</span>/10</div>\n            <div class=\"buttons\">\n                <button onclick=\"prevQuestion('theme5')\">← Précédent</button>\n                <button id=\"nextBtn5\" onclick=\"nextQuestion('theme5')\">Suivant →</button>\n            </div>\n        </div>\n\n        <!-- Certificat -->\n        <div id=\"certificate\" class=\"certificate\">\n            <div class=\"certificate-title\">🏆 Certificat de Réussite</div>\n            <div class=\"certificate-content\" id=\"certContent\"></div>\n        </div>\n    </div>\n\n    <script>\n        const themes = {\n            'theme1': [\n                {\n                    q: 'Quelle loi a imposé la désignation obligatoire d\\'un référent harcèlement? ',\n                    opts: ['Loi du 6 août 2019', 'Loi du 13 juillet 1983', 'Décret du 6 novembre 2024', 'Charte DGAFP'],\n                    ans: 0,\n                    exp: 'La loi du 6 août 2019 de transformation de la fonction publique a rendu obligatoire cette désignation. '\n                },\n                {\n                    q: 'Quel article impose aux employeurs de garantir la santé mentale des agents?',\n                    opts: ['L.  134-1', 'L. 135', 'L. 136-1', 'L. 133-3'],\n                    ans: 2,\n                    exp: 'L\\'article L. 136-1 du Code général de la fonction publique. '\n                },\n                {\n                    q: 'La loi 2019 impose quelle obligation supplémentaire? ',\n                    opts: ['Psychologue obligatoire', 'Obligation de sécurité étendue à la santé mentale', 'Formation annuelle', 'Méditation obligatoire'],\n                    ans: 1,\n                    exp: 'Une obligation générale de sécurité incluant la protection de la santé mentale.'\n                },\n                {\n                    q: 'Quel texte a renforcé les obligations en prévention?',\n                    opts:  ['Décret 2024', 'Charte DGAFP 2019', 'Loi 6 août 2019', 'Accord 2018'],\n                    ans: 2,\n                    exp: 'La loi du 6 août 2019 a marqué un tournant majeur. '\n                },\n                {\n                    q: 'Quelle instance a publié la Charte en novembre 2019?',\n                    opts:  ['Défenseur des droits', 'DGAFP', 'Conseil d\\'État', 'CST'],\n                    ans: 1,\n                    exp:  'La Direction générale de l\\'administration et de la fonction publique (DGAFP).'\n                },\n                {\n                    q: 'Quel accord de 2018 a inspiré la Charte?',\n                    opts: ['Accord égalité professionnelle 30 nov 2018', 'Loi Sapin II', 'Décret 2020', 'Convention collective'],\n                    ans:  0,\n                    exp: 'L\\'accord relatif à l\\'égalité professionnelle du 30 novembre 2018.'\n                },\n                {\n                    q: 'Quel décret est entré en vigueur le 1er février 2025?',\n                    opts:  ['Décret 13 mars 2020', 'Décret 6 novembre 2024', 'Décret 28 mai 1982', 'Décret 4 novembre 1992'],\n                    ans: 1,\n                    exp:  'Le décret du 6 novembre 2024 a modernisé le système. '\n                },\n                {\n                    q: 'Quel principe est au cœur de la lutte? ',\n                    opts: ['Précaution', 'Prévention', 'Confidentialité', 'Proportionnalité'],\n                    ans: 1,\n                    exp: 'Le principe de prévention impose des mesures actives.'\n                },\n                {\n                    q: 'Quel texte interdit explicitement le harcèlement?',\n                    opts: ['Loi 13 juillet 1983', 'Code pénal', 'Code du travail', 'Charte DGAFP'],\n                    ans: 0,\n                    exp: 'La loi du 13 juillet 1983 en pose les bases.'\n                },\n                {\n                    q: 'Quel article du CGFP impose l\\'obligation de prévention?',\n                    opts: ['L. 134-1', 'L. 135', 'L. 136-1', 'L. 133-3'],\n                    ans: 2,\n                    exp: 'L\\'article L. 136-1 énonce cette obligation clé.'\n                }\n            ],\n            'theme2': [\n                {\n                    q: 'Depuis quand les collectivités doivent-elles avoir un dispositif? ',\n                    opts: ['1er mai 2019', '1er mai 2020', '1er février 2025', '1er janvier 2023'],\n                    ans: 1,\n                    exp: 'Le décret du 13 mars 2020 l\\'a imposé à partir du 1er mai 2020.'\n                },\n                {\n                    q: 'Combien de procédures le dispositif doit-il avoir?',\n                    opts:  ['Une procédure', 'Deux procédures', 'Trois procédures', 'Quatre procédures'],\n                    ans: 2,\n                    exp: 'Recueil, orientation et traitement des signalements.'\n                },\n                {\n                    q:  'Quels canaux de signalement sont disponibles? ',\n                    opts: ['Référent uniquement', 'Plusieurs:  référent, hiérarchie, reps, médecin', 'Hiérarchie seulement', 'Défenseur seulement'],\n                    ans: 1,\n                    exp: 'Plusieurs canaux pour faciliter la libération de la parole.'\n                },\n                {\n                    q: 'Quel principe doit être garanti?',\n                    opts: ['Publicité', 'Transparence totale', 'Confidentialité', 'Rapidité absolue'],\n                    ans:  2,\n                    exp: 'La confidentialité doit être strictement respectée.'\n                },\n                {\n                    q: 'Quel document encadre les dispositifs?',\n                    opts: ['Loi 2019', 'Charte DGAFP 2019', 'Code pénal', 'Code du travail'],\n                    ans: 1,\n                    exp: 'La Charte DGAFP de novembre 2019 est le référentiel.'\n                },\n                {\n                    q: 'Qu\\'est-ce que la mutualisation? ',\n                    opts: ['Centralisation nationale', 'Petit collectivités utilisent dispositif mutualisé', 'Suppression des référents', 'Externalisation privée'],\n                    ans:  1,\n                    exp: 'Permet aux petites collectivités un dispositif professionnel.'\n                },\n                {\n                    q: 'Qui oriente les agents victimes?',\n                    opts: ['Maire', 'Référent harcèlement', 'Préfet', 'Procureur'],\n                    ans: 1,\n                    exp: 'Le référent oriente vers les services compétents.'\n                },\n                {\n                    q: 'Quel décret a remplacé celui de 2020?',\n                    opts: ['Décret 1992', 'Décret 6 novembre 2024', 'Décret 1987', 'Décret 1982'],\n                    ans: 1,\n                    exp:  'Le décret du 6 novembre 2024 l\\'a remplacé et modernisé.'\n                },\n                {\n                    q: 'Quel principe guide l\\'orientation?',\n                    opts:  ['Égalité', 'Bienveillance', 'Neutralité absolue', 'Rapidité'],\n                    ans:  1,\n                    exp: 'La bienveillance doit guider l\\'accompagnement.'\n                },\n                {\n                    q: 'Quels documents peuvent servir de preuves?',\n                    opts: ['Certificats uniquement', 'Messages seulement', 'Témoignages seulement', 'Tous ces documents et plus'],\n                    ans: 3,\n                    exp: 'Preuves directes et indirectes sont acceptées.'\n                }\n            ],\n            'theme3': [\n                {\n                    q: 'Quelle procédure doit être engagée?',\n                    opts: ['Médiation', 'Enquête administrative', 'Procédure disciplinaire', 'Licenciement'],\n                    ans: 1,\n                    exp: 'Une enquête administrative est obligatoire.'\n                },\n                {\n                    q: 'Quelles qualités doivent avoir les enquêteurs?',\n                    opts: ['Agents depuis 10 ans', 'Formés, compétents, impartiaux', 'Magistrats', 'Tirés au sort'],\n                    ans: 1,\n                    exp: 'Ils doivent être indépendants et compétents.'\n                },\n                {\n                    q: 'Quels types de preuves sont recevables?',\n                    opts: ['Directes seulement', 'Indirectes seulement', 'Directes ET indirectes', 'Matérielles uniquement'],\n                    ans:  2,\n                    exp: 'Preuves variées:  messages, témoignages, certificats, etc.'\n                },\n                {\n                    q: 'Quel organisme a recommandé d\\'encadrer?',\n                    opts: ['Conseil d\\'État', 'Défenseur des droits', 'DGAFP', 'TA Paris'],\n                    ans: 1,\n                    exp:  'Le Défenseur des droits en 2020. '\n                },\n                {\n                    q: 'Quel est l\\'objectif principal? ',\n                    opts: ['Sanctionner immédiatement', 'Établir la matérialité des faits', 'Classer sans suite', 'Publier résultats'],\n                    ans: 1,\n                    exp: 'Établir les faits et qualifier les comportements.'\n                },\n                {\n                    q: 'Quelle posture lors des auditions?',\n                    opts: ['Neutralité absolue', 'Bienveillance avec distance', 'Confrontation', 'Rapidité'],\n                    ans:  1,\n                    exp: 'Bienveillance mais distance nécessaire.'\n                },\n                {\n                    q: 'Quel document garantit la valeur probante?',\n                    opts: ['Rapport étonnement', 'Procès-verbal d\\'audition', 'Main courante', 'Note confidentielle'],\n                    ans: 1,\n                    exp: 'PV d\\'audition signé par les parties.'\n                },\n                {\n                    q: 'Quelle instance peut être associée?',\n                    opts: ['CST ou Formation Spécialisée', 'Comité d\\'entreprise', 'CHSCT', 'Comité technique'],\n                    ans: 0,\n                    exp: 'Le CST peut participer à l\\'enquête.'\n                },\n                {\n                    q: 'Quel texte a réorganisé les instances?',\n                    opts:  ['Loi 6 août 2019', 'Décret 13 mars 2020', 'Code du travail', 'Charte DGAFP'],\n                    ans: 0,\n                    exp: 'La loi 2019 a créé le Comité Social Territorial.'\n                },\n                {\n                    q: 'Quel rôle pour la Formation Spécialisée?',\n                    opts: ['Gérer les carrières', 'Droit d\\'alerte en cas de danger', 'Négocier salaires', 'Recruter'],\n                    ans:  1,\n                    exp: 'Exercer un droit d\\'alerte face aux risques.'\n                }\n            ],\n            'theme4': [\n                {\n                    q: 'Quels frais sont pris en charge?',\n                    opts: ['Transport', 'Avocat', 'Logement', 'Formation'],\n                    ans: 1,\n                    exp:  'La protection garantit les frais d\\'avocat.'\n                },\n                {\n                    q:  'Quel texte encadre la protection?',\n                    opts: ['Articles L. 134-1 CGFP', 'Loi 13 juillet 1983', 'Décret 6 novembre 2024', 'Charte DGAFP'],\n                    ans: 0,\n                    exp: 'Articles L. 134-1 et suivants du CGFP. '\n                },\n                {\n                    q: 'Qui bénéficie de la protection? ',\n                    opts: ['Victimes uniquement', 'Victimes, témoins, lanceurs d\\'alerte', 'Plaignants pénaux', 'CDI seulement'],\n                    ans:  1,\n                    exp: 'Protection élargie à tous les protégés.'\n                },\n                {\n                    q: 'Quel document est signé avec l\\'avocat?',\n                    opts: ['Convention', 'Contrat travail', 'PV', 'Main courante'],\n                    ans: 0,\n                    exp: 'Une convention détermine les modalités.'\n                },\n                {\n                    q:  'Quel principe interdit les représailles?',\n                    opts: ['Précaution', 'Non-discrimination', 'Confidentialité', 'Proportionnalité'],\n                    ans: 1,\n                    exp: 'Article L. 133-3 du CGFP.'\n                },\n                {\n                    q: 'Quelle décision du CC a abrogé L. 134-4?',\n                    opts:  ['2024-1098 QPC du 4 juillet', '2020-800', '2019-778', '2023-1000'],\n                    ans: 0,\n                    exp:  'Décision 2024-1098 QPC du 4 juillet 2024.'\n                },\n                {\n                    q: 'Quels soutiens la protection garantit-elle?',\n                    opts:  ['Psycho', 'Juridique', 'Psycho, juridique, financier', 'Financier'],\n                    ans: 2,\n                    exp: 'Triple soutien pour les protégés.'\n                },\n                {\n                    q: 'Quand la protection est-elle à titre conservatoire?',\n                    opts: ['Plainte pénale', 'Risque d\\'atteinte grave', 'Sanction', 'Mutation'],\n                    ans: 1,\n                    exp:  'En cas de danger manifeste.'\n                },\n                {\n                    q:  'Quel texte interdit la discrimination?',\n                    opts: ['L. 135-4 CGFP', 'Loi Sapin II', 'Décret 2024', 'Charte'],\n                    ans: 0,\n                    exp: 'Article L. 135-4 du CGFP.'\n                },\n                {\n                    q: 'Quelle loi a renforcé en 2022?',\n                    opts:  ['Loi 6 août 2019', 'Loi 2022-401 du 21 mars', 'Loi 13 juillet 1983', 'Décret 13 mars 2020'],\n                    ans: 1,\n                    exp: 'Loi n° 2022-401 du 21 mars 2022.'\n                }\n            ],\n            'theme5': [\n                {\n                    q: 'Quelle sanction est la plus grave?',\n                    opts:  ['Avertissement', 'Blâme', 'Révocation', 'Exclusion temporaire'],\n                    ans:  2,\n                    exp: 'La révocation entraîne l\\'exclusion définitive.'\n                },\n                {\n                    q:  'Quel principe guide le choix?',\n                    opts: ['Rapidité', 'Proportionnalité', 'Confidentialité', 'Publicité'],\n                    ans:  1,\n                    exp: 'Adapter la sanction à la gravité des faits.'\n                },\n                {\n                    q: 'Qui peut publier les sanctions?',\n                    opts: ['CST', 'Autorité disciplinaire', 'Défenseur', 'Procureur'],\n                    ans: 1,\n                    exp: 'L\\'autorité disciplinaire peut les publier.'\n                },\n                {\n                    q: 'Peines pour harcèlement sexuel?',\n                    opts: ['1 an / 15K€', '2 ans / 30K€', '3 ans / 45K€', '5 ans / 75K€'],\n                    ans: 1,\n                    exp: '2 ans d\\'emprisonnement et 30 000 € d\\'amende.'\n                },\n                {\n                    q:  'Quel texte encadre les sanctions?',\n                    opts: ['Loi 84-53 du 26 jan 1984', 'Décret 6 nov 2024', 'Charte DGAFP', 'Code pénal'],\n                    ans:  0,\n                    exp: 'Loi n° 84-53 du 26 janvier 1984.'\n                },\n                {\n                    q: 'Quel principe permet poursuites doubles?',\n                    opts:  ['Précaution', 'Cumul de responsabilités', 'Confidentialité', 'Proportionnalité'],\n                    ans: 1,\n                    exp: 'Agent ET collectivité peuvent être poursuivis.'\n                },\n                {\n                    q:  'Quel recours pour mesures d\\'urgence?',\n                    opts: ['Référé-liberté', 'Recours annulation', 'Pleine juridiction', 'Cassation'],\n                    ans:  0,\n                    exp: 'Le référé-liberté du juge administratif.'\n                },\n                {\n                    q:  'Quelle décision en 2025?',\n                    opts:  ['CE 20 juin', 'TC 6 octobre 2025', 'TA Besançon', 'CC 4 juillet'],\n                    ans: 1,\n                    exp:  'Tribunal des conflits du 6 octobre 2025.'\n                },\n                {\n                    q: 'Projet de loi annoncé quand?',\n                    opts: ['19 mai 2025', 'Loi 2019', 'Décret 2024', 'Charte'],\n                    ans: 0,\n                    exp: 'Projet gouvernemental du 19 mai 2025.'\n                },\n                {\n                    q: 'Mesures pour accélérer les procédures?',\n                    opts: ['Chambres spécialisées', 'Formation magistrats', 'Délais', 'Toutes ces mesures'],\n                    ans: 3,\n                    exp: 'Toutes les mesures sont prévues.'\n                }\n            ]\n        };\n\n        let currentIndex = {};\n        let answers = {};\n\n        function initTheme(theme) {\n            currentIndex[theme] = 0;\n            answers[theme] = {};\n            renderQuestions(theme);\n        }\n\n        function renderQuestions(theme) {\n            const qDiv = document.getElementById('questions' + theme. slice(5));\n            const idx = currentIndex[theme];\n            const q = themes[theme][idx];\n            const answered = answers[theme][idx] !== undefined;\n\n            let html = `\n                <div class=\"question\">\n                    <div class=\"question-number\">Question ${idx + 1} / 10</div>\n                    <div class=\"question-text\">${q.q}</div>\n                    <div class=\"options\">\n            `;\n\n            q.opts.forEach((opt, i) => {\n                const isCorrect = i === q.ans;\n                const isSelected = answers[theme][idx] === i;\n                let cls = 'option';\n                if (answered) {\n                    if (isCorrect) cls += ' correct';\n                    if (isSelected && !isCorrect) cls += ' incorrect';\n                }\n                html += `\n                    <div class=\"${cls}\">\n                        <input type=\"radio\" name=\"ans${idx}\" value=\"${i}\" ${isSelected ? 'checked' : ''} ${answered ? 'disabled' : ''} onchange=\"selectAns('${theme}', ${idx}, ${i})\">\n                        <label>${opt}</label>\n                    </div>\n                `;\n            });\n\n            html += `</div>`;\n\n            if (answered) {\n                const correct = answers[theme][idx] === q. ans;\n                html += `\n                    <div class=\"feedback ${correct ? 'correct' : 'incorrect'} show\">\n                        <strong>${correct ? '✓ Correct!' : '✗ Incorrect'}</strong><br>${q.exp}\n                    </div>\n                `;\n            }\n\n            html += `</div>`;\n            qDiv.innerHTML = html;\n\n            const progress = ((idx + 1) / 10) * 100;\n            document.querySelector(`#${theme} .progress-fill`).style.width = progress + '%';\n\n            const score = Object.values(answers[theme] || {}).filter((a, i) => a === themes[theme][i]. ans).length;\n            document.getElementById('score' + theme. slice(5)).textContent = score;\n\n            const btn = document.getElementById('nextBtn' + theme.slice(5));\n            btn.disabled = answers[theme][idx] === undefined;\n            btn.textContent = idx === 9 ? 'Terminer →' : 'Suivant →';\n        }\n\n        function selectAns(theme, idx, ans) {\n            answers[theme][idx] = ans;\n            renderQuestions(theme);\n        }\n\n        function nextQuestion(theme) {\n            const idx = currentIndex[theme];\n            if (idx < 9) {\n                currentIndex[theme]++;\n                renderQuestions(theme);\n            } else {\n                finishQuiz();\n            }\n        }\n\n        function prevQuestion(theme) {\n            if (currentIndex[theme] > 0) {\n                currentIndex[theme]--;\n                renderQuestions(theme);\n            }\n        }\n\n        function switchTheme(theme, btn) {\n            document.querySelectorAll('. theme').forEach(t => t.classList. remove('active'));\n            document.getElementById(theme).classList.add('active');\n            document.querySelectorAll('. nav-btn').forEach(b => b.classList.remove('active'));\n            btn.classList.add('active');\n            if (! currentIndex[theme]) initTheme(theme);\n        }\n\n        function finishQuiz() {\n            let total = 0;\n            for (let t in themes) {\n                const score = Object.values(answers[t] || {}).filter((a, i) => a === themes[t][i].ans).length;\n                total += score;\n            }\n            const pct = Math.round((total / 50) * 100);\n            const cert = document.getElementById('certificate');\n            cert.classList.add('show');\n            const msg = pct >= 75 ? '🏆 Excellent!' : pct >= 60 ? '👍 Bien!' : '📚 À revoir';\n            document.getElementById('certContent').innerHTML = `\n                <p>${msg}</p>\n                <p>Score total: <strong>${total}/50 (${pct}%)</strong></p>\n                <p>Date:  ${new Date().toLocaleDateString('fr-FR')}</p>\n            `;\n        }\n\n        // Initialize\n        initTheme('theme1');\n    </script>\n</body>\n</html>\n```
+
+4.  Cliquez **"Commit changes"**
+
+✅ **Votre fichier est ajouté! **
+
+---
+
+### **ÉTAPE 3️⃣ :  Activer GitHub Pages**
+
+1. Allez dans **Settings** (Paramètres)
+2. Scroll vers **"Pages"** (dans le menu de gauche)
+3. Sous **"Source"**, sélectionnez : 
+   - Branch: `main`
+   - Dossier: `/ (root)`
+4. Cliquez **"Save"**
+
+✅ **DEPLOYE! ** 
+
+---
+
+### **📍 VOTRE URL**
+
+Votre quiz sera disponible sur : 
