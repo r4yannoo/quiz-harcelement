@@ -93,69 +93,234 @@
             margin: 0 10px;
             padding: 10px 20px;
         }
-        /* Styles pour le certificat */
-        .certificate {
-            display: none;
-            text-align: center;
-            background: #fff;
-            padding: 30px;
-            border: 2px solid #3498db;
-            border-radius: 10px;
-            margin: 20px 0;
-            position: relative;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .certificate.active {
-            display: block;
-        }
-        .certificate h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        .certificate-content {
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            min-height: 120px;
-        }
-        .certificate-footer {
-            font-style: italic;
-            color: #666;
-            margin-top: 20px;
-        }
-        .download-btn {
-            margin-top: 20px;
-            background: #27ae60;
-            padding: 10px 20px;
-        }
-        .download-btn:hover {
-            background: #219653;
-        }
-        .success-message {
-            font-weight: bold;
-            color: #27ae60;
-            font-size: 18px;
-            margin: 15px 0;
-        }
-        .partial-message {
-            color: #f39c12;
-            font-weight: bold;
-        }
-        .fail-message {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-        .progress-container {
-            width: 100%;
-            background-color: #ecf0f1;
-            border-radius: 5px;
-            margin: 20px 0;
-            height: 20px;
-        }
-        .progress-bar {
-            height: 100%;
-            border-radius: 5px;
-            transition: width 0.5s ease;
+      /* NOUVEAU STYLE POUR LE CERTIFICAT DIPLÔME */
+.certificate-container {
+    display: none;
+    margin: 30px auto;
+    max-width: 800px;
+}
+
+.certificate-container.active {
+    display: block;
+}
+
+.certificate-diploma {
+    background: linear-gradient(to bottom right, #fdf6e3, #fffef6);
+    border: 15px solid;
+    border-image: linear-gradient(45deg, #d4af37, #ffd700, #d4af37) 1;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #2c3e50;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.certificate-header {
+    margin-bottom: 30px;
+    border-bottom: 3px double #d4af37;
+    padding-bottom: 20px;
+}
+
+.certificate-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #2c3e50;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.certificate-subtitle {
+    font-size: 18px;
+    color: #7d6608;
+    font-style: italic;
+    margin-bottom: 5px;
+}
+
+.certificate-body {
+    padding: 20px 0;
+}
+
+.certificate-awarded {
+    font-size: 14px;
+    margin-bottom: 25px;
+    color: #555;
+}
+
+.certificate-name {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 20px 0;
+    padding: 10px;
+    border-top: 2px solid #d4af37;
+    border-bottom: 2px solid #d4af37;
+    display: inline-block;
+}
+
+.certificate-achievement {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 25px 0;
+    color: #333;
+}
+
+.certificate-course {
+    font-size: 22px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 15px 0;
+    font-style: italic;
+}
+
+.certificate-score {
+    font-size: 24px;
+    font-weight: bold;
+    color: #27ae60;
+    margin: 15px 0;
+}
+
+.certificate-details {
+    margin: 30px 0;
+    padding: 15px;
+    background: rgba(212, 175, 55, 0.1);
+    border-left: 4px solid #d4af37;
+    text-align: left;
+}
+
+.certificate-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.signature-box {
+    text-align: center;
+    flex: 1;
+}
+
+.signature-line {
+    border-top: 1px solid #000;
+    width: 200px;
+    margin: 40px auto 10px;
+}
+
+.signature-title {
+    font-size: 12px;
+    color: #666;
+}
+
+.certificate-seal {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #d4af37, #7d6608);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+    border: 3px solid #ffd700;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.certificate-id {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 10px;
+    color: #999;
+}
+
+.certificate-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.download-diploma-btn {
+    background: linear-gradient(to right, #27ae60, #2ecc71);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.download-diploma-btn:hover {
+    background: linear-gradient(to right, #219653, #27ae60);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.print-diploma-btn {
+    background: linear-gradient(to right, #3498db, #2980b9);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.print-diploma-btn:hover {
+    background: linear-gradient(to right, #2980b9, #1f6396);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.result-message {
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    background: #f8f9fa;
+    border-left: 5px solid #3498db;
+}
+
+.excellent-message {
+    border-left-color: #27ae60;
+    background: #e8f6ef;
+}
+
+.good-message {
+    border-left-color: #f39c12;
+    background: #fef9e7;
+}
+
+.average-message {
+    border-left-color: #e74c3c;
+    background: #fdedec;
+}
+
+@media print {
+    .certificate-diploma {
+        box-shadow: none;
+        border: 10px solid #d4af37;
+    }
+    
+    .certificate-actions {
+        display: none;
+    }
+    
+    body *:not(.certificate-container):not(.certificate-container *):not(.certificate-diploma):not(.certificate-diploma *) {
+        display: none !important;
+    }
+}
         }
         .final-score {
             text-align: center;
@@ -812,44 +977,80 @@
             Score : <span id="score">0</span>/50
         </div>
 
-        <div class="final-score">
-            <button onclick="showCertificate()">Voir mon certificat</button>
+        <div         <div class="final-score">
+            <button onclick="showCertificate()">🎓 Obtenir mon diplôme</button>
         </div>
 
-        <!-- Certificat de participation ajouté -->
-        <div id="certificate" class="certificate">
-            <h2>🏆 Certificat de participation</h2>
-
-            <div class="progress-container">
-                <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
-            </div>
-
-            <div class="certificate-content">
-                <p><strong>Ce certificat atteste que</strong></p>
-                <p id="user-name" style="font-size: 20px; font-weight: bold; color: #2c3e50; margin: 15px 0;">[Nom du participant]</p>
-
-                <p><strong>a complété le quiz sur</strong></p>
-                <p style="font-size: 18px; font-weight: bold; color: #3498db; margin-bottom: 20px;">
-                    "Protection des agents victimes de harcèlement dans les collectivités territoriales"
-                </p>
-
-                <div id="result-message">
-                    <!-- Message dynamique basé sur le score -->
+        <!--         <!-- NOUVEAU CERTIFICAT DIPLÔME PROFESSIONNEL -->
+        <div id="certificate-container" class="certificate-container">
+            <div class="certificate-diploma">
+                <div class="certificate-header">
+                    <div class="certificate-title">Diplôme de Qualification Professionnelle</div>
+                    <div class="certificate-subtitle">Formation en prévention du harcèlement</div>
+                    <div style="font-size: 14px; color: #777; margin-top: 5px;">Collectivités Territoriales</div>
                 </div>
-
-                <p style="margin-top: 15px; font-size: 14px;">
-                    Ce quiz couvre les aspects juridiques, les dispositifs de signalement, les enquêtes administratives,
-                    la protection fonctionnelle, ainsi que les sanctions et recours disponibles.
-                </p>
+                
+                <div class="certificate-body">
+                    <div class="certificate-awarded">Décerné à :</div>
+                    <div class="certificate-name" id="diploma-name">[Nom du participant]</div>
+                    
+                    <div class="certificate-achievement">
+                        En reconnaissance de la réussite au programme de formation sur
+                        <div class="certificate-course">
+                            "Protection des agents victimes de harcèlement dans les collectivités territoriales"
+                        </div>
+                        
+                        <div class="certificate-score" id="diploma-score">
+                            Score obtenu : <span id="diploma-score-value">0</span>/50 (<span id="diploma-percentage">0</span>%)
+                        </div>
+                    </div>
+                    
+                    <div class="certificate-details">
+                        <p><strong>Compétences validées :</strong></p>
+                        <ul style="margin: 10px 0 0 20px; padding: 0;">
+                            <li>Cadre légal et obligations des employeurs publics</li>
+                            <li>Dispositifs de signalement et procédures</li>
+                            <li>Conduite d'enquêtes administratives</li>
+                            <li>Protection fonctionnelle des agents</li>
+                            <li>Sanctions disciplinaires et recours juridiques</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="result-message" id="diploma-message">
+                        <!-- Message personnalisé inséré ici -->
+                    </div>
+                </div>
+                
+                <div class="certificate-footer">
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <div class="signature-title">Directeur de la Formation</div>
+                    </div>
+                    
+                    <div style="text-align: center; flex: 1;">
+                        <div>Délivré le <span id="diploma-date"></span></div>
+                        <div style="font-size: 12px; color: #777; margin-top: 5px;">ID: <span id="diploma-id"></span></div>
+                    </div>
+                    
+                    <div class="signature-box">
+                        <div class="signature-line"></div>
+                        <div class="signature-title">Référent Harcèlement</div>
+                    </div>
+                </div>
+                
+                <div class="certificate-seal">
+                    <div>VÉRIFIÉ<br>ET<br>APPROUVÉ</div>
+                </div>
+                
+                <div class="certificate-id">
+                    Certificat électronique • Non falsifiable
+                </div>
             </div>
-
-            <div class="certificate-footer">
-                <p>Score obtenu : <span id="certificate-score">0</span>/50 (<span id="certificate-percentage">0</span>%)</p>
-                <p>Délivré le <span id="certificate-date"></span></p>
-                <p style="margin-top: 10px; font-size: 12px;">Ce certificat est généré automatiquement à l'issue du quiz.</p>
+            
+            <div class="certificate-actions">
+                <button class="download-diploma-btn" onclick="downloadDiploma()">📥 Télécharger le diplôme</button>
+                <button class="print-diploma-btn" onclick="printDiploma()">🖨️ Imprimer le diplôme</button>
             </div>
-
-            <button class="download-btn" onclick="downloadCertificate()">Télécharger le certificat</button>
         </div>
     </div>
 
@@ -887,151 +1088,196 @@
             }
         }
 
-        // Nouvelle fonction pour afficher le certificat
+        //         // Nouvelle fonction pour afficher le diplôme
         function showCertificate() {
-            const certificate = document.getElementById('certificate');
+            const certificateContainer = document.getElementById('certificate-container');
             const percentage = Math.round((score / totalQuestions) * 100);
-            const resultMessage = document.getElementById('result-message');
-            const progressBar = document.getElementById('progress-bar');
-
-            // Mettre à jour les éléments dynamiques
-            document.getElementById('certificate-score').textContent = score;
-            document.getElementById('certificate-percentage').textContent = percentage;
-
-            // Mettre à jour la barre de progression
-            progressBar.style.width = percentage + '%';
-            if (percentage < 30) progressBar.style.backgroundColor = '#e74c3c'; // Rouge
-            else if (percentage < 70) progressBar.style.backgroundColor = '#f39c12'; // Orange
-            else progressBar.style.backgroundColor = '#27ae60'; // Vert
-
+            const resultMessage = document.getElementById('diploma-message');
+            
+            // Demander le nom de l'utilisateur
+            const userName = prompt("Veuillez entrer votre nom pour le diplôme:", "Nom Prénom");
+            
+            if (!userName) {
+                return; // Annuler si l'utilisateur n'entre pas de nom
+            }
+            
+            // Mettre à jour les éléments dynamiques du diplôme
+            document.getElementById('diploma-name').textContent = userName;
+            document.getElementById('diploma-score-value').textContent = score;
+            document.getElementById('diploma-percentage').textContent = percentage;
+            
             // Mettre à jour la date
             const today = new Date();
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('certificate-date').textContent = today.toLocaleDateString('fr-FR', options);
-
+            document.getElementById('diploma-date').textContent = today.toLocaleDateString('fr-FR', options);
+            
+            // Générer un ID unique pour le diplôme
+            const diplomaId = 'DPL-' + today.getFullYear() + '-' + 
+                            String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+                            String(today.getDate()).padStart(2, '0') + '-' + 
+                            Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+            document.getElementById('diploma-id').textContent = diplomaId;
+            
             // Message personnalisé selon le score
             let message = '';
-
+            let messageClass = '';
+            
             if (percentage >= 90) {
+                messageClass = 'excellent-message';
                 message = `
-                    <p class="success-message">🎉 Excellence exceptionnelle !</p>
-                    <p>Félicitations pour ce score remarquable de <strong>${percentage}%</strong> !
-                    Vous maîtrisez parfaitement les mécanismes de protection contre le harcèlement dans les collectivités territoriales.
-                    Vos connaissances pourraient être <strong>très utiles</strong> pour :
-                    <ul style="text-align: left; margin: 10px 0 0 30px;">
-                        <li>Conseiller des collègues ou des agents victimes</li>
-                        <li>Participer à des cellules de prévention</li>
-                        <li>Animer des formations sur ces sujets</li>
-                    </ul>
-                    </p>
-                    <p style="margin-top: 10px; font-style: italic;">Continuez à promouvoir ces enjeux essentiels pour un environnement de travail sain !</p>
+                    <p style="font-weight: bold; color: #27ae60; margin-bottom: 10px;">🎉 Niveau d'excellence atteint !</p>
+                    <p>Félicitations pour cette performance exceptionnelle ! Vous démontrez une maîtrise complète des dispositifs de protection contre le harcèlement.</p>
+                    <p style="margin-top: 10px; font-style: italic;">Vos compétences sont reconnues au plus haut niveau de qualification.</p>
                 `;
             }
             else if (percentage >= 75) {
+                messageClass = 'good-message';
                 message = `
-                    <p class="success-message">👏 Très bon résultat !</p>
-                    <p>Avec <strong>${percentage}%</strong> de bonnes réponses, vous avez une <strong>solide compréhension</strong>
-                    des dispositifs de protection contre le harcèlement. Vos connaissances couvrent bien :
-                    <ul style="text-align: left; margin: 10px 0 0 30px;">
-                        <li>Le cadre légal et les obligations des collectivités</li>
-                        <li>Les procédures de signalement et d'enquête</li>
-                        <li>Les droits des agents victimes</li>
-                    </ul>
-                    </p>
-                    <p style="margin-top: 10px;">Une petite révision des points les moins maîtrisés vous permettrait d'atteindre l'excellence !</p>
+                    <p style="font-weight: bold; color: #f39c12; margin-bottom: 10px;">👏 Niveau avancé validé !</p>
+                    <p>Excellent travail ! Vous avez une compréhension approfondie des mécanismes de protection et des obligations légales.</p>
+                    <p style="margin-top: 10px;">Vos connaissances sont suffisantes pour conseiller et accompagner efficacement.</p>
                 `;
             }
             else if (percentage >= 60) {
+                messageClass = 'good-message';
                 message = `
-                    <p class="success-message">📚 Bon travail !</p>
-                    <p>Votre score de <strong>${percentage}%</strong> montre que vous avez acquis les <strong>connaissances de base</strong>
-                    sur la protection des agents. Vous maîtrisez notamment :
-                    <ul style="text-align: left; margin: 10px 0 0 30px;">
-                        <li>Les principes généraux de prévention</li>
-                        <li>Les acteurs clés (référents, CST, etc.)</li>
-                        <li>Les grandes lignes des procédures</li>
-                    </ul>
-                    </p>
-                    <p style="margin-top: 10px;">Pour progresser, nous vous recommandons de :
-                    <ul style="text-align: left; margin: 10px 0 0 30px;">
-                        <li>Revoir les questions manquées</li>
-                        <li>Étudier les textes cités (loi de 2019, décret de 2024, etc.)</li>
-                        <li>Vous intéresser aux jurisprudences récentes</li>
-                    </ul>
-                    </p>
+                    <p style="font-weight: bold; color: #3498db; margin-bottom: 10px;">📚 Niveau intermédiaire atteint</p>
+                    <p>Bonne performance ! Vous maîtrisez les principes fondamentaux de la protection contre le harcèlement.</p>
+                    <p style="margin-top: 10px;">Vous êtes apte à identifier les situations à risque et à orienter vers les dispositifs appropriés.</p>
                 `;
             }
             else if (percentage >= 40) {
+                messageClass = 'average-message';
                 message = `
-                    <p class="partial-message">⚠️ Résultat moyen</p>
-                    <p>Votre score de <strong>${percentage}%</strong> indique que vous avez <strong>des lacunes importantes</strong>
-                    sur ce sujet crucial. Les collectivités territoriales ont des <strong>obligations légales strictes</strong>
-                    en matière de prévention du harcèlement.</p>
-                    <p style="margin-top: 10px;">Les points à travailler en priorité :
-                    <ul style="text-align: left; margin: 10px 0 0 30px;">
-                        <li>Le cadre légal (loi de 2019, articles du CGFP)</li>
-                        <li>Les procédures de signalement et d'enquête</li>
-                        <li>Les droits des agents et la protection fonctionnelle</li>
-                    </ul>
-                    </p>
-                    <p style="margin-top: 10px;">Une <strong>formation complémentaire</strong> serait très utile pour maîtriser ces enjeux.</p>
+                    <p style="font-weight: bold; color: #e74c3c; margin-bottom: 10px;">⚠️ Niveau de base validé</p>
+                    <p>Vous avez acquis les connaissances de base sur le sujet. Une formation complémentaire est recommandée pour approfondir votre expertise.</p>
+                    <p style="margin-top: 10px;">Continuez à vous former sur ces enjeux essentiels pour les collectivités territoriales.</p>
                 `;
             }
             else {
+                messageClass = 'average-message';
                 message = `
-                    <p class="fail-message">❌ Résultat insuffisant</p>
-                    <p>Avec <strong>${percentage}%</strong> de bonnes réponses, vos connaissances sur la protection
-                    contre le harcèlement dans les collectivités territoriales sont <strong>très limitées</strong>.</p>
-                    <p style="margin-top: 10px;">Ce sujet est pourtant <strong>essentiel</strong> pour :
-                    <ul style="text-align: left; margin: 10px 0 0 30px;">
-                        <li>Protéger les agents et respecter leurs droits</li>
-                        <li>Éviter des sanctions pour la collectivité</li>
-                        <li>Créer un environnement de travail sain</li>
-                    </ul>
-                    </p>
-                    <p style="margin-top: 10px;">Nous vous <strong>recommandons vivement</strong> de :
-                    <ul style="text-align: left; margin: 10px 0 0 30px;">
-                        <li>Étudier les textes de référence (loi 2019, décret 2024)</li>
-                        <li>Suivre une formation spécifique</li>
-                        <li>Recommencer ce quiz après révision</li>
-                    </ul>
-                    </p>
+                    <p style="font-weight: bold; color: #c0392b; margin-bottom: 10px;">📝 Participation reconnue</p>
+                    <p>Merci pour votre participation. Ce diplôme atteste de votre engagement dans la formation sur la prévention du harcèlement.</p>
+                    <p style="margin-top: 10px;">Nous vous encourageons à poursuivre votre apprentissage sur ce sujet crucial pour améliorer vos connaissances.</p>
                 `;
             }
-
+            
             resultMessage.innerHTML = message;
-            certificate.classList.add('active');
-            certificate.scrollIntoView({ behavior: 'smooth' });
+            resultMessage.className = 'result-message ' + messageClass;
+            
+            // Afficher le certificat
+            certificateContainer.classList.add('active');
+            certificateContainer.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Fonction pour télécharger le certificat
-        function downloadCertificate() {
-            const userName = prompt("Veuillez entrer votre nom pour le certificat:", "Nom Prénom");
-
-            if (userName) {
-                document.getElementById('user-name').textContent = userName;
-
-                // Utiliser html2canvas pour capturer le certificat
-                if (typeof html2canvas !== 'undefined') {
-                    html2canvas(document.getElementById('certificate')).then(canvas => {
-                        const link = document.createElement('a');
-                        link.download = 'Certificat_Protection_Harcelement_' + userName.replace(/\s+/g, '_') + '.png';
-                        link.href = canvas.toDataURL('image/png');
-                        link.click();
-                    });
-                } else {
-                    alert("Le téléchargement n'est pas disponible. Veuillez actualiser la page et réessayer.");
-                }
+        // Fonction pour télécharger le diplôme
+        function downloadDiploma() {
+            const diplomaElement = document.querySelector('.certificate-diploma');
+            const userName = document.getElementById('diploma-name').textContent;
+            
+            if (userName === '[Nom du participant]') {
+                alert("Veuillez d'abord générer votre diplôme en cliquant sur 'Obtenir mon diplôme'");
+                return;
             }
+            
+            // Créer un contenu HTML pour le téléchargement
+            const diplomaContent = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Diplôme - Protection contre le harcèlement</title>
+                    <style>
+                        body {
+                            font-family: 'Georgia', 'Times New Roman', serif;
+                            margin: 0;
+                            padding: 40px;
+                            background: linear-gradient(to bottom right, #fdf6e3, #fffef6);
+                            color: #2c3e50;
+                        }
+                        .certificate-diploma {
+                            background: white;
+                            border: 15px solid;
+                            border-image: linear-gradient(45deg, #d4af37, #ffd700, #d4af37) 1;
+                            padding: 40px;
+                            text-align: center;
+                            max-width: 800px;
+                            margin: 0 auto;
+                            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                        }
+                        .certificate-title {
+                            font-size: 28px;
+                            font-weight: bold;
+                            color: #2c3e50;
+                            letter-spacing: 2px;
+                            margin-bottom: 10px;
+                            text-transform: uppercase;
+                        }
+                        .certificate-name {
+                            font-size: 32px;
+                            font-weight: bold;
+                            color: #2c3e50;
+                            margin: 20px 0;
+                            padding: 10px;
+                            border-top: 2px solid #d4af37;
+                            border-bottom: 2px solid #d4af37;
+                            display: inline-block;
+                        }
+                        .certificate-score {
+                            font-size: 24px;
+                            font-weight: bold;
+                            color: #27ae60;
+                            margin: 15px 0;
+                        }
+                        .certificate-footer {
+                            margin-top: 40px;
+                            padding-top: 20px;
+                            border-top: 1px solid #ddd;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .signature-line {
+                            border-top: 1px solid #000;
+                            width: 200px;
+                            margin: 40px auto 10px;
+                        }
+                        @media print {
+                            @page {
+                                size: A4 landscape;
+                                margin: 0;
+                            }
+                            body {
+                                padding: 0;
+                            }
+                        }
+                    </style>
+                </head>
+                <body>
+                    ${diplomaElement.outerHTML}
+                </body>
+                </html>
+            `;
+            
+            // Créer un blob et télécharger
+            const blob = new Blob([diplomaContent], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `Diplome_Harcelement_${userName.replace(/\s+/g, '_')}.html`;
+            link.click();
         }
 
-        // Charger html2canvas dynamiquement
-        const script = document.createElement('script');
-        script.src = 'https://html2canvas.hertzen.com/dist/html2canvas.min.js';
-        script.onload = function() {
-            console.log('html2canvas chargé avec succès');
-        };
-        document.head.appendChild(script);
+        // Fonction pour imprimer le diplôme
+        function printDiploma() {
+            const userName = document.getElementById('diploma-name').textContent;
+            
+            if (userName === '[Nom du participant]') {
+                alert("Veuillez d'abord générer votre diplôme en cliquant sur 'Obtenir mon diplôme'");
+                return;
+            }
+            
+            window.print();
+        }
     </script>
 </body>
 </html>
