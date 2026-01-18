@@ -346,6 +346,7 @@
             <button onclick="showTheme('theme3')">3. Enquête administrative</button>
             <button onclick="showTheme('theme4')">4. Protection fonctionnelle</button>
             <button onclick="showTheme('theme5')">5. Sanctions et recours</button>
+            <button onclick="showTheme('theme6')">6. Caractérisation juridique</button>
         </div>
 
         <!-- Thématique 1 : Cadre légal protecteur -->
@@ -972,9 +973,132 @@
                 <div id="feedback50" class="feedback"></div>
             </div>
         </div>
+<!-- NOUVELLE THÉMATIQUE 6 : Caractérisation juridique du harcèlement -->
+<div id="theme6" class="theme">
+    <h2 style="color: #9b59b6; border-bottom-color: #9b59b6;">6. Caractérisation juridique du harcèlement</h2>
 
+    <div class="question">
+        <p><strong>Question 1/10 :</strong> Selon l'article L. 133-3 du Code général de la fonction publique, quel principe fondamental protège les agents publics contre le harcèlement ?</p>
+        <div class="options">
+            <label><input type="radio" name="q51" value="a"> Le principe d'égalité de traitement</label>
+            <label><input type="radio" name="q51" value="b"> Le principe de laïcité</label>
+            <label><input type="radio" name="q51" value="c"> La garantie statutaire essentielle accordée aux agents publics</label>
+            <label><input type="radio" name="q51" value="d"> Le principe de mobilité géographique</label>
+        </div>
+        <button onclick="checkAnswer('q51', 'c', 'L\'article L. 133-3 du CGFP affirme que l\'interdiction du harcèlement moral et sexuel constitue une garantie statutaire essentielle accordée aux agents publics.')">Valider</button>
+        <div id="feedback51" class="feedback"></div>
+    </div>
+
+    <div class="question">
+        <p><strong>Question 2/10 :</strong> Quels sont les deux types de harcèlement explicitement interdits par l'article L. 133-3 du Code général de la fonction publique ?</p>
+        <div class="options">
+            <label><input type="radio" name="q52" value="a"> Harcèlement physique et psychologique</label>
+            <label><input type="radio" name="q52" value="b"> Harcèlement moral et harcèlement sexuel</label>
+            <label><input type="radio" name="q52" value="c"> Harcèlement professionnel et privé</label>
+            <label><input type="radio" name="q52" value="d"> Harcèlement hiérarchique et horizontal</label>
+        </div>
+        <button onclick="checkAnswer('q52', 'b', 'L\'article L. 133-3 du CGFP interdit explicitement les agissements répétés de harcèlement moral et les faits de harcèlement sexuel.')">Valider</button>
+        <div id="feedback52" class="feedback"></div>
+    </div>
+
+    <div class="question">
+        <p><strong>Question 3/10 :</strong> Selon la loi du 13 juillet 1983, quelle est la condition essentielle pour caractériser le harcèlement moral ?</p>
+        <div class="options">
+            <label><input type="radio" name="q53" value="a"> L'existence d'un lien hiérarchique entre auteur et victime</label>
+            <label><input type="radio" name="q53" value="b"> La preuve d'une intention de nuire</label>
+            <label><input type="radio" name="q53" value="c"> Des agissements répétés ayant pour objet ou effet une dégradation des conditions de travail</label>
+            <label><input type="radio" name="q53" value="d"> La nécessité d'une plainte pénale préalable</label>
+        </div>
+        <button onclick="checkAnswer('q53', 'c', 'L\'article 6 quinquies de la loi du 13 juillet 1983 définit le harcèlement moral comme des agissements répétés ayant pour objet ou effet une dégradation des conditions de travail susceptible de porter atteinte aux droits, à la dignité, à la santé ou à l\'avenir professionnel de l\'agent.')">Valider</button>
+        <div id="feedback53" class="feedback"></div>
+    </div>
+
+    <div class="question">
+        <p><strong>Question 4/10 :</strong> Concernant le harcèlement sexuel, quelle est la particularité par rapport au harcèlement moral en matière de répétition des actes ?</p>
+        <div class="options">
+            <label><input type="radio" name="q54" value="a"> La répétition n'est jamais exigée pour le harcèlement sexuel</label>
+            <label><input type="radio" name="q54" value="b"> Un acte isolé peut suffire s'il constitue une pression grave dans le but d'obtenir un acte de nature sexuelle</label>
+            <label><input type="radio" name="q54" value="c"> La répétition est toujours exigée, mais sur une période plus courte</label>
+            <label><input type="radio" name="q54" value="d"> La répétition n'est exigée que pour les propos, pas pour les comportements</label>
+        </div>
+        <button onclick="checkAnswer('q54', 'b', 'Le harcèlement sexuel peut prendre deux formes : des propos/comportements répétés OU un acte isolé constituant une pression grave exercée dans le but réel ou apparent d\'obtenir un acte de nature sexuelle.')">Valider</button>
+        <div id="feedback54" class="feedback"></div>
+    </div>
+
+    <div class="question">
+        <p><strong>Question 5/10 :</strong> Quel élément distingue l'agissement sexiste du harcèlement sexuel selon l'article L. 131-3 du CGFP ?</p>
+        <div class="options">
+            <label><input type="radio" name="q55" value="a"> L'agissement sexiste nécessite toujours une intention discriminatoire</label>
+            <label><input type="radio" name="q55" value="b"> L'agissement sexiste est défini comme tout agissement lié au sexe d'une personne, ayant pour objet ou effet de porter atteinte à sa dignité ou de créer un environnement hostile</label>
+            <label><input type="radio" name="q55" value="c"> L'agissement sexiste est toujours moins grave que le harcèlement sexuel</label>
+            <label><input type="radio" name="q55" value="d"> L'agissement sexiste ne concerne que les femmes</label>
+        </div>
+        <button onclick="checkAnswer('q55', 'b', 'L\'article L. 131-3 définit l\'agissement sexiste comme tout agissement lié au sexe d\'une personne, ayant pour objet ou effet de porter atteinte à sa dignité ou de créer un environnement intimidant, hostile, dégradant, humiliant ou offensant.')">Valider</button>
+        <div id="feedback55" class="feedback"></div>
+    </div>
+
+    <div class="question">
+        <p><strong>Question 6/10 :</strong> Pour le harcèlement moral, quel est l'élément matériel essentiel parmi les suivants ?</p>
+        <div class="options">
+            <label><input type="radio" name="q56" value="a"> L'existence d'un préjudice avéré (certificat médical obligatoire)</label>
+            <label><input type="radio" name="q56" value="b"> La démonstration d'une intention de nuire de la part de l'auteur</label>
+            <label><input type="radio" name="q56" value="c"> Le caractère répétitif des agissements</label>
+            <label><input type="radio" name="q56" value="d"> L'existence d'un témoin direct des faits</label>
+        </div>
+        <button onclick="checkAnswer('q56', 'c', 'Le caractère répétitif est essentiel pour caractériser le harcèlement moral. Un acte isolé, même grave, ne suffit pas. La répétition peut concerner des propos, comportements, mesures ou attitudes.')">Valider</button>
+        <div id="feedback56" class="feedback"></div>
+    </div>
+
+    <div class="question">
+        <p><strong>Question 7/10 :</strong> Selon les informations fournies, quels sont les trois critères cumulatifs pour caractériser le harcèlement moral ?</p>
+        <div class="options">
+            <label><input type="radio" name="q57" value="a"> 1) Agissements répétés, 2) Dégradation des conditions de travail, 3) Intention de nuire</label>
+            <label><input type="radio" name="q57" value="b"> 1) Acte unique grave, 2) Préjudice physique, 3) Lien hiérarchique</label>
+            <label><input type="radio" name="q57" value="c"> 1) Agissements répétés, 2) Dégradation objective des conditions de travail, 3) Faits susceptibles de causer un dommage</label>
+            <label><input type="radio" name="q57" value="d"> 1) Plainte écrite, 2) Certificat médical, 3) Témoignages concordants</label>
+        </div>
+        <button onclick="checkAnswer('q57', 'c', 'Les trois conditions cumulatives sont : 1) agissements répétés, 2) dégradation objective des conditions de travail, 3) faits susceptibles de causer un dommage (altération santé, atteinte dignité, carrière compromise).')">Valider</button>
+        <div id="feedback57" class="feedback"></div>
+    </div>
+
+    <div class="question">
+        <p><strong>Question 8/10 :</strong> Concernant l'élément moral du harcèlement, quelle affirmation est correcte ?</p>
+        <div class="options">
+            <label><input type="radio" name="q58" value="a"> Pour le harcèlement moral, il faut prouver l'intention explicite de nuire</label>
+            <label><input type="radio" name="q58" value="b"> Pour le harcèlement sexuel, l'infraction est caractérisée dès lors que l'auteur agit dans le but réel ou apparent d'obtenir un acte de nature sexuelle</label>
+            <label><input type="radio" name="q58" value="c"> L'élément moral n'est pas requis pour le harcèlement sexuel</label>
+            <label><input type="radio" name="q58" value="d"> Seul le harcèlement moral nécessite un élément intentionnel</label>
+        </div>
+        <button onclick="checkAnswer('q58', 'b', 'Pour le harcèlement sexuel, l\'élément moral réside dans la volonté d\'imposer des propos/comportements à connotation sexuelle. Dans le cas de pression grave, l\'infraction est caractérisée dès lors que l\'auteur agit dans le but réel ou apparent d\'obtenir un acte de nature sexuelle.')">Valider</button>
+        <div id="feedback58" class="feedback"></div>
+    </div>
+
+    <div class="question">
+        <p><strong>Question 9/10 :</strong> Quelle différence majeure existe-t-il en matière de preuve entre harcèlement moral et harcèlement sexuel ?</p>
+        <div class="options">
+            <label><input type="radio" name="q59" value="a"> Pour le harcèlement sexuel, la victime doit toujours fournir des preuves écrites</label>
+            <label><input type="radio" name="q59" value="b"> Pour le harcèlement moral, l'administration doit prouver l'absence de faits</label>
+            <label><input type="radio" name="q59" value="c"> Pour le harcèlement sexuel, une présomption peut être établie dès l'existence de faits à caractère sexuel, sans preuve de préjudice effectif</label>
+            <label><input type="radio" name="q59" value="d"> Seul le harcèlement moral bénéficie d'un aménagement de la charge de la preuve</label>
+        </div>
+        <button onclick="checkAnswer('q59', 'c', 'À la différence du harcèlement moral, le harcèlement sexuel peut être présumé dès la simple existence de faits à caractère sexuel, sans qu\'il soit nécessaire d\'établir un préjudice effectif ou la dégradation des conditions de travail.')">Valider</button>
+        <div id="feedback59" class="feedback"></div>
+    </div>
+
+    <div class="question">
+        <p><strong>Question 10/10 :</strong> Quelle loi a intégré le harcèlement moral et sexuel dans le champ des discriminations avec un aménagement de la charge de la preuve favorable à la victime ?</p>
+        <div class="options">
+            <label><input type="radio" name="q60" value="a"> Loi n° 2008-496 du 27 mai 2008 portant diverses dispositions d'adaptation au droit communautaire dans le domaine de la lutte contre les discriminations</label>
+            <label><input type="radio" name="q60" value="b"> Loi du 6 août 2019 de transformation de la fonction publique</label>
+            <label><input type="radio" name="q60" value="c"> Loi n° 2012-954 du 6 août 2012 relative au harcèlement sexuel</label>
+            <label><input type="radio" name="q60" value="d"> Loi du 13 juillet 1983 portant droits et obligations des fonctionnaires</label>
+        </div>
+        <button onclick="checkAnswer('q60', 'a', 'La loi n° 2008-496 du 27 mai 2008 a intégré le harcèlement moral et sexuel dans le champ des discriminations, conférant compétence au Défenseur des droits et instaurant un aménagement de la charge de la preuve favorable à la victime.')">Valider</button>
+        <div id="feedback60" class="feedback"></div>
+    </div>
+</div>
         <div class="score">
-            Score : <span id="score">0</span>/50
+            Score : <span id="score">0</span>/60
         </div>
 
         <div         <div class="final-score">
@@ -1013,6 +1137,7 @@
                             <li>Conduite d'enquêtes administratives</li>
                             <li>Protection fonctionnelle des agents</li>
                             <li>Sanctions disciplinaires et recours juridiques</li>
+                            <li>Caractérisation juridique du harcèlement</li>
                         </ul>
                     </div>
                     
