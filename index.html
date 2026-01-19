@@ -1194,7 +1194,8 @@
 
         function checkAnswer(questionId, correctAnswer, explanation) {
             const selectedOption = document.querySelector(`input[name="${questionId}"]:checked`);
-            const feedbackElement = document.getElementById(`feedback${questionId.slice(1)}`);
+            const questionNumber = questionId.substring(1);
+    const feedbackElement = document.getElementById(`feedback${questionNumber}`);
 
             if (selectedOption) {
                 answeredQuestions++;
